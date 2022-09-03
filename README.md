@@ -24,3 +24,16 @@ Instalando dependências de projeto:
 ```sh
 yarn
 ```
+
+Iniciando o servidor de desenvolvimento:
+
+```sh
+yarn dev
+```
+
+Entre em http://localhost:3000 para visualizar a aplicação.
+
+Links úteis:
+- https://nextjs.org/learn/foundations/about-nextjs
+- https://nextjs.org/docs
+- https://github.com/vercel/next.js/tree/canary/examples
