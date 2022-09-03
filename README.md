@@ -27,13 +27,15 @@ yarn
 
 Iniciando o servidor de desenvolvimento:
 
-```sh
+```bash
 yarn dev
+# ou
+npm run dev
 ```
 
-Entre em http://localhost:3000 para visualizar a aplicação.
+Entre em [http://localhost:3000](http://localhost:3000) para visualizar a aplicação.
 
 Links úteis:
-- https://nextjs.org/learn/foundations/about-nextjs
-- https://nextjs.org/docs
-- https://github.com/vercel/next.js/tree/canary/examples
+- [Aprenda Next.js](https://nextjs.org/learn/foundations/about-nextjs) - Tutorial interativo
+- [Next.js Documentação](https://nextjs.org/docs) - Next.js features e API
+- [Exemplos](https://github.com/vercel/next.js/tree/deprecated-main/examples) - Exemplos de projetos e dependências
