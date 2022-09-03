@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="138.095" height="50" viewBox="0 0 138.095 50">
+  <g id="Grupo_7" data-name="Grupo 7" transform="translate(-129 -55)">
+    <text id="RIVI" transform="translate(129 95)" fill="#319795" font-size="41" font-family="Inter, sans-serif" font-weight="400"><tspan x="0" y="0">RIVI</tspan></text>
+    <g id="Grupo_6" data-name="Grupo 6" transform="translate(141 -1.577)">
+      <g id="Icon_feather-search" data-name="Icon feather-search" transform="translate(87.429 63.658)">
+        <path id="Caminho_1" data-name="Caminho 1" d="M36.356,20.428A15.928,15.928,0,1,1,20.428,4.5,15.928,15.928,0,0,1,36.356,20.428Z" transform="translate(-4.5 -4.5)" fill="none" stroke="#319795" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+        <path id="Caminho_2" data-name="Caminho 2" d="M33.636,33.636l-8.661-8.661" transform="translate(2.202 2.202)" fill="none" stroke="#319795" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <path id="Icon_awesome-fist-raised" data-name="Icon awesome-fist-raised" d="M13.028,17.915v7.329a.814.814,0,0,1-.814.814H10.585a.814.814,0,0,1-.814-.814V17.766a2.421,2.421,0,0,0,.813.149Zm6.514-4.885a3.257,3.257,0,0,1-3.257,3.257H10.578a.807.807,0,0,1-.809-.807v-.029a2.422,2.422,0,0,1,2.421-2.422h1.795c.493,0,.672-.182.672-.407V11.8a.418.418,0,0,0-.4-.407C11.99,11.274,10.99,10.133,9.367,7.7l-.321-.482A.407.407,0,0,0,8.482,7.1L7.8,7.555a.407.407,0,0,0-.113.564l.321.482a14.4,14.4,0,0,0,2.408,2.956A3.274,3.274,0,0,0,8.442,13.31a2.412,2.412,0,0,0-1.113-.281H5.7a2.425,2.425,0,0,0-1.629.635,2.425,2.425,0,0,0-1.629-.636H.814a2.4,2.4,0,0,0-.814.15V9.213A6.514,6.514,0,0,1,1.908,4.606L3.257,3.257V0H16.285V3.255l1.828,1.828A4.888,4.888,0,0,1,19.543,8.54Zm-1.629,4.585v6a.814.814,0,0,1-.814.814H15.47a.814.814,0,0,1-.814-.814v-5.7h1.629A4.823,4.823,0,0,0,17.913,17.615ZM.814,14.658H2.443a.814.814,0,0,1,.814.814v6.514a.814.814,0,0,1-.814.814H.814A.814.814,0,0,1,0,21.986V15.472A.814.814,0,0,1,.814,14.658Zm4.885,0H7.328a.814.814,0,0,1,.814.814v8.143a.814.814,0,0,1-.814.814H5.7a.814.814,0,0,1-.814-.814V15.472a.814.814,0,0,1,.814-.814Z" transform="translate(88.589 89.521) rotate(-90)" fill="#319795"/>
+    </g>
+  </g>
+</svg>
