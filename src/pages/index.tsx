@@ -1,6 +1,15 @@
 import { Button, Flex, Img, Text } from '@chakra-ui/react';
+import api from '@lib/api';
+import { useEffect } from 'react';
 
 function Home(): React.ReactNode {
+  useEffect(() => {
+    // ? mock api call example below
+    api.get('teste').then(({ data }) => {
+      return console.log(data);
+    });
+  }, []);
+
   return (
     <Flex
       direction={{ base: 'column-reverse', md: 'row' }}
