@@ -51,6 +51,13 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Contato',
     href: '/contato',
   },
+  /* ToDo: Link para pagina de Projetos, 
+           Dropdown de Grupo, para Projetos
+  {
+    label: 'projetos',
+    href: '/projetos',
+  },
+  */
 ];
 
 function DesktopSubNav({ label, href, subLabel }: NavItem): JSX.Element {
