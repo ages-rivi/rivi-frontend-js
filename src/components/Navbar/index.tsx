@@ -37,7 +37,16 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Grupo',
-    href: '/grupo',
+    children: [
+      {
+        label: 'Quem Somos',
+        href: '/grupo',
+      },
+      {
+        label: 'Linhas de Pesquisa e Projetos',
+        href: '/projetos',
+      },
+    ],
   },
   {
     label: 'Artigos',
@@ -51,13 +60,6 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Contato',
     href: '/contato',
   },
-  /* ToDo: Link para pagina de Projetos, 
-           Dropdown de Grupo, para Projetos
-  {
-    label: 'projetos',
-    href: '/projetos',
-  },
-  */
 ];
 
 function DesktopSubNav({ label, href, subLabel }: NavItem): JSX.Element {
