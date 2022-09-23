@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 type Response = SortedMembers;
 
-const members: Member[] = [
+export const members: Member[] = [
   {
     id: 1,
     name: 'John Doe',
@@ -90,6 +90,17 @@ const members: Member[] = [
   },
 ];
 
+export function getSortedMembers(): SortedMembers {
+  return {
+    colaborators: members.filter((member) => {
+      return member.role === 'colaborator';
+    }),
+    researchGroup: members.filter((member) => {
+      return member.role === 'groupMember';
+    }),
+  };
+}
+
 export default (
   req: NextApiRequest,
   res: NextApiResponse<Response | Member[]>
@@ -97,13 +108,7 @@ export default (
   const sorted = req.query?.sorted;
   if (req.method === 'GET') {
     if (sorted) {
-      const colaborators = members.filter((member) => {
-        return member.role === 'colaborator';
-      });
-      const researchGroup = members.filter((member) => {
-        return member.role === 'groupMember';
-      });
-      res.status(200).json({ colaborators, researchGroup });
+      res.status(200).json(getSortedMembers());
     } else {
       res.status(200).json({ ...members });
     }

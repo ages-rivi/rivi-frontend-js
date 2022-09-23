@@ -1,3 +1,4 @@
+import { getSortedMembers } from '@api/mock/members';
 import { Flex, Text } from '@chakra-ui/react';
 import MemberCardCarosel from '@components/Members/MemberCardCarosel';
 import { SortedMembers } from '@interfaces/Member';
@@ -5,7 +6,6 @@ import api from '@lib/api';
 import { GetStaticProps } from 'next';
 
 function Grupo({ members }: { members: SortedMembers }): JSX.Element {
-  console.log(members);
   return (
     <Flex direction="column" p="5" align="center" w="full">
       <Flex
@@ -51,10 +51,20 @@ function Grupo({ members }: { members: SortedMembers }): JSX.Element {
 export default Grupo;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data: members }: { data: SortedMembers } = await api.get(
-    '/members?sorted=true'
-  );
+  const isDevelopment = process.env.NODE_ENV === 'development';
 
+  if (isDevelopment) {
+    const { data: members }: { data: SortedMembers } = await api.get(
+      '/members?sorted=true'
+    );
+
+    return {
+      props: { members },
+      revalidate: 60 * 60 * 24, // 24 hours
+    };
+  }
+
+  const members = getSortedMembers();
   return {
     props: { members },
     revalidate: 60 * 60 * 24, // 24 hours
