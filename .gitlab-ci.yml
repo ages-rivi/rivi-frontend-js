@@ -1,9 +1,9 @@
-default:
-  image: node:16.16.0
-
 deploy-to-vercel:
   stage: deploy
-  variables: PREVIEW_URL=https://$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG.rivi-frontend-js.vercel.app
+  image: node:16.16.0
+
+  variables: 
+    PREVIEW_URL: https://$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG.rivi-frontend-js.vercel.app
 
   rules:
     - if: $CI_MERGE_REQUEST_IID
