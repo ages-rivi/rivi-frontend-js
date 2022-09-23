@@ -1,6 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react';
 import ResearcherItem from '@components/ResearcherCard';
 
+//ToDo: projetos
+
 function Grupo(): JSX.Element {
   return (
     <Flex direction="column" p="5">
