@@ -57,7 +57,7 @@ function SocialMediaStack({ social }: { social: Social }): JSX.Element {
   }
 
   return (
-    <Stack direction="row" gap="16">
+    <Stack direction="row" gap="12">
       <Link href={social.facebook} key={social.facebook} isExternal>
         <Icon as={FiFacebook} w={5} h={5} color="blackAlpha.700" />
       </Link>
@@ -82,11 +82,13 @@ export default function MemberCard({
       p="5"
       w="full"
       maxW="400px"
+      minW={{ base: 'full', sm: '350px' }}
       borderStyle="solid"
       borderColor="gray.100"
       borderRadius="20"
       shadow="xl"
       bg="gray.100"
+      mx="auto"
     >
       <Flex
         color="gray.700"
