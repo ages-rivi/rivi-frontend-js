@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import MemberCard from '@components/Members/MemberCard';
+import MemberCardCarosel from '@components/Members/MemberCardCarosel';
 import { SortedMembers } from '@interfaces/Member';
 import api from '@lib/api';
 import { GetStaticProps } from 'next';
@@ -39,16 +39,11 @@ function Grupo({ members }: { members: SortedMembers }): JSX.Element {
           impacto/interação das tecnologias da informação e comunicação.
         </Text>
       </Flex>
-      <Flex direction="column" w="full" maxW="1330px" align="center" mb="5">
-        <Text fontSize="4xl" textAlign="center" fontWeight="bold" my="5">
-          Grupo de Pesquisa
-        </Text>
-        <Flex gap="5" direction={{ base: 'column', lg: 'row' }}>
-          <MemberCard member={members.researchGroup[0]} />
-          <MemberCard member={members.researchGroup[1]} />
-          <MemberCard member={members.researchGroup[2]} />
-        </Flex>
-      </Flex>
+      <MemberCardCarosel
+        members={members.researchGroup}
+        title="Grupo de Pesquisa"
+      />
+      <MemberCardCarosel members={members.colaborators} title="Colaboradores" />
     </Flex>
   );
 }
