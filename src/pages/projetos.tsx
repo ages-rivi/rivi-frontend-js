@@ -1,9 +1,9 @@
 import { Flex, Text } from '@chakra-ui/react';
-import ResearcherItem from '@components/ResearcherCard';
+import ProjectItem from '@components/ProjectCard';
 
-//ToDo: projetos
+// ToDo: projetos
 
-function Grupo(): JSX.Element {
+function Projetos(): JSX.Element {
   return (
     <Flex direction="column" p="5">
       <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
@@ -44,10 +44,13 @@ function Grupo(): JSX.Element {
           processos são analisados com ênfase na perspectiva de análise e
           intervenção clínica.
         </Text>
+        <Text textAlign="center" fontWeight="medium" fontSize="5xl">
+          Projetos
+        </Text>
       </Flex>
-      <ResearcherItem />
+      <ProjectItem />
     </Flex>
   );
 }
 
-export default Grupo;
+export default Projetos;
