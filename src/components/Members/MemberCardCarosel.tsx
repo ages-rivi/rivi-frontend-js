@@ -24,7 +24,7 @@ export default function MemberCardCarosel({
         py="8"
       >
         {members.map((member) => {
-          return <MemberCard member={member} />;
+          return <MemberCard key={member.id} member={member} />;
         })}
       </Flex>
     </Flex>
