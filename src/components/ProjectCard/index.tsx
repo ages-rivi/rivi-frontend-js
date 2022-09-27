@@ -1,24 +1,28 @@
 import { Box, Flex, HStack, Tag, Text } from '@chakra-ui/react';
 
-interface Project {
+/*
+interface Projects {
   titulo: string;
-  description?: string;
+  deion?: string;
   tags?: Array<Tags>;
 }
+*/
 
 interface Tags {
   titulo: string;
   color: string;
 }
 
+/*
 interface SocialMedia {
   icon: string;
   href: string;
 }
+*/
 
-const Project: Project = {
+const Project = {
   titulo: 'Projeto XXX',
-  description:
+  deion:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis lectus sed odio ornare, in posuere ligula euismod. Etiam sed venenatis magna. Morbi libero lacus. Donec vitae elit viverra, mattis ligula eu, facilisis nisl. Morbi malesuada, tellus feugiat convallis tempus. Nullam tempor arcu turpis, vel euismod eros tincidunt nec.',
   tags: [
     {
@@ -83,7 +87,7 @@ export default function ProjectItem(): JSX.Element {
         <Text py="30px" fontWeight="medium" fontSize="2xl">
           {Project.titulo}
         </Text>
-        <Text paddingBottom="20px">{Project.description}</Text>
+        <Text paddingBottom="20px">{Project.deion}</Text>
         <TagsStack />
       </Flex>
     </Box>
