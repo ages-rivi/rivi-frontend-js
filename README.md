@@ -93,4 +93,4 @@ e um menu irá guiar o usuário para realizar o commit da maneira adequada.
 
 É importante notar que o processo de commit também pode ser feito normalmente da maneira tradicional.
 
-Commits que fojem dos padrões de commit do Conventional Commits serão rejeitados automáticamente.
+Commits que forem dos padrões de commit do Conventional Commits serão rejeitados automaticamente.
