@@ -1,6 +1,10 @@
-import { Box, Img, UnorderedList } from '@chakra-ui/react';
+import { Box, Icon, Img, Link, VStack } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import * as icons from 'react-icons/fi';
+
+interface SidebarProps {
+  sidebarItens: SideItem[];
+}
 
 interface SideItem {
   icon: IconType;
@@ -55,30 +59,35 @@ const SIDE_ITENS: Array<SideItem> = [
   },
 ];
 
-/* function SidebarItens(): JSX.Element {
+function SidebarItens(): JSX.Element {
   return (
-    <Stack direction="column" justify="center" paddingBottom="7" w="full">
-      {tags.map((sm, index) => {
+    <VStack direction="column" justify="center" paddingBottom="7" w="full">
+      {SIDE_ITENS.map((si) => {
         return (
-          <Tag
+          <Box
             w={{ base: 'full', sm: 'auto' }}
             textAlign="center"
             justifyContent="center"
-            variant="solid"
-            colorScheme={getColor(index)}
             fontWeight="bold"
-            // eslint-disable-next-line react/no-array-index-key
-            key={sm + index}
+            key={si.name}
           >
-            {sm}
-          </Tag>
+            <Link href={si.href} key={si.name}>
+              <Icon as={si.icon} w={5} h={5} color="blackAlpha.700" />
+              {si.name}
+              <SidebarChildren children={si.children} />
+            </Link>
+          </Box>
         );
       })}
-    </Stack>
+    </VStack>
   );
-} */
+}
 
-function SidebarChildren(): JSX.Element {
+function SidebarChildren({
+  children,
+}: {
+  children: ChildrenItem[];
+}): JSX.Element {
   return <Box />;
 }
 
@@ -86,7 +95,7 @@ export default function Sidebar(): JSX.Element {
   return (
     <Box>
       <Img src="/Logo.svg" />
-      <UnorderedList />
+      <SidebarItens />
     </Box>
   );
 }
