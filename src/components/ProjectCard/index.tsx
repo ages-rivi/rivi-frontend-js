@@ -1,6 +1,6 @@
 import { Box, Flex, HStack, Tag, Text } from '@chakra-ui/react';
 
-interface Project {
+interface Projects {
   titulo: string;
   description?: string;
   tags?: Array<Tags>;
@@ -46,13 +46,31 @@ const PROJECT: Project = {
     {
       nome: 'Flavio Vianna',
     },
+    {
+      nome: 'Kevin',
+    },
+    {
+      nome: 'Giovanni',
+    },
+    {
+      nome: 'Eduardo',
+    },
   ],
   afiliacoes: [
     {
       nome: 'PUCRS',
     },
     {
-      nome: 'Urgs',
+      nome: 'PUCSP',
+    },
+    {
+      nome: 'Univats',
+    },
+    {
+      nome: 'Marista',
+    },
+    {
+      nome: 'UFSC',
     },
   ],
 };
@@ -88,9 +106,14 @@ function ResearcherStack(): JSX.Element {
 
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
-      {PROJECT.pesquisadores.map((sm) => {
-        return <Text>{sm.nome}</Text>;
-      })}
+      <Text>
+        {PROJECT.pesquisadores
+          .map((pesquisador) => {
+            return pesquisador.nome;
+          })
+          .join(', ')}
+      </Text>
+      ;
     </HStack>
   );
 }
@@ -102,9 +125,14 @@ function AfiliacoesStack(): JSX.Element {
 
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
-      {PROJECT.afiliacoes.map((sm) => {
-        return <Text>{sm.nome}</Text>;
-      })}
+      <Text>
+        {PROJECT.afiliacoes
+          .map((afiliacao) => {
+            return afiliacao.nome;
+          })
+          .join(', ')}
+      </Text>
+      ;
     </HStack>
   );
 }
@@ -134,6 +162,15 @@ function ProjectItem(): JSX.Element {
         </Text>
         <Text paddingBottom="20px">{PROJECT.description}</Text>
         <TagsStack />
+      </Flex>
+      <Flex
+        color="gray.700"
+        direction="column"
+        py="3px"
+        align="left"
+        maxW="300.px"
+        m="auto"
+      >
         <ResearcherStack />
         <AfiliacoesStack />
       </Flex>

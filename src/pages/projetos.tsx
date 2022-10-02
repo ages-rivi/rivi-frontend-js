@@ -1,4 +1,12 @@
-import { Flex, Text } from '@chakra-ui/react';
+import {
+  Flex,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react';
 import ProjectItem from '@components/ProjectCard';
 
 // ToDo: projetos
@@ -44,11 +52,33 @@ function Projetos(): JSX.Element {
           processos são analisados com ênfase na perspectiva de análise e
           intervenção clínica.
         </Text>
-        <Text textAlign="center" fontWeight="medium" fontSize="5xl">
+        <Text textAlign="center" fontWeight="medium" fontSize="5xl" p="5">
           Projetos
         </Text>
       </Flex>
-      <ProjectItem />
+      <Tabs variant="enclosed" align="center" justify="center">
+        <TabList mb="1em">
+          <Tab _selected={{ color: 'white', bg: 'teal.500' }}>Em Andamento</Tab>
+          <Tab _selected={{ color: 'white', bg: 'teal.500' }}>Finalizados</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <ProjectItem />
+          </TabPanel>
+          <TabPanel>
+            <Flex
+              align="center"
+              justify="center"
+              direction={{ base: 'column', md: 'row' }}
+              gap={{ base: '2', md: '6' }}
+              w="full"
+            >
+              <ProjectItem />
+              <ProjectItem />
+            </Flex>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </Flex>
   );
 }
