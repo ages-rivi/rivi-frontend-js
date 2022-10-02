@@ -4,6 +4,8 @@ interface Project {
   titulo: string;
   description?: string;
   tags?: Array<Tags>;
+  pesquisadores?: Array<Pesquisadores>;
+  afiliacoes?: Array<Afiliacoes>;
 }
 
 interface Tags {
@@ -11,12 +13,15 @@ interface Tags {
   color: string;
 }
 
-interface SocialMedia {
-  icon: string;
-  href: string;
+interface Pesquisadores {
+  nome: string;
 }
 
-const Project: Project = {
+interface Afiliacoes {
+  nome: string;
+}
+
+const PROJECT: Project = {
   titulo: 'Projeto XXX',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis lectus sed odio ornare, in posuere ligula euismod. Etiam sed venenatis magna. Morbi libero lacus. Donec vitae elit viverra, mattis ligula eu, facilisis nisl. Morbi malesuada, tellus feugiat convallis tempus. Nullam tempor arcu turpis, vel euismod eros tincidunt nec.',
@@ -34,16 +39,32 @@ const Project: Project = {
       color: 'pink',
     },
   ],
+  pesquisadores: [
+    {
+      nome: 'Caio Andrade',
+    },
+    {
+      nome: 'Flavio Vianna',
+    },
+  ],
+  afiliacoes: [
+    {
+      nome: 'PUCRS',
+    },
+    {
+      nome: 'Urgs',
+    },
+  ],
 };
 
 function TagsStack(): JSX.Element {
-  if (!Project.tags) {
+  if (!PROJECT.tags) {
     return <Box />;
   }
 
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
-      {Project.tags.map((sm) => {
+      {PROJECT.tags.map((sm) => {
         return (
           <Tag
             size="sm"
@@ -60,7 +81,35 @@ function TagsStack(): JSX.Element {
   );
 }
 
-export default function ProjectItem(): JSX.Element {
+function ResearcherStack(): JSX.Element {
+  if (!PROJECT.pesquisadores) {
+    return <Box />;
+  }
+
+  return (
+    <HStack direction="row" justify="center" paddingBottom="24px">
+      {PROJECT.pesquisadores.map((sm) => {
+        return <Text>{sm.nome}</Text>;
+      })}
+    </HStack>
+  );
+}
+
+function AfiliacoesStack(): JSX.Element {
+  if (!PROJECT.afiliacoes) {
+    return <Box />;
+  }
+
+  return (
+    <HStack direction="row" justify="center" paddingBottom="24px">
+      {PROJECT.afiliacoes.map((sm) => {
+        return <Text>{sm.nome}</Text>;
+      })}
+    </HStack>
+  );
+}
+
+function ProjectItem(): JSX.Element {
   return (
     <Box
       borderBottom={1}
@@ -81,11 +130,15 @@ export default function ProjectItem(): JSX.Element {
         m="auto"
       >
         <Text py="30px" fontWeight="medium" fontSize="2xl">
-          {Project.titulo}
+          {PROJECT.titulo}
         </Text>
-        <Text paddingBottom="20px">{Project.description}</Text>
+        <Text paddingBottom="20px">{PROJECT.description}</Text>
         <TagsStack />
+        <ResearcherStack />
+        <AfiliacoesStack />
       </Flex>
     </Box>
   );
 }
+
+export default ProjectItem;
