@@ -9,7 +9,59 @@ import {
 } from '@chakra-ui/react';
 import ProjectItem from '@components/ProjectCard';
 
-// ToDo: projetos
+const Project = {
+  titulo: 'Projeto XXX',
+  description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis lectus sed odio ornare, in posuere ligula euismod. Etiam sed venenatis magna. Morbi libero lacus. Donec vitae elit viverra, mattis ligula eu, facilisis nisl. Morbi malesuada, tellus feugiat convallis tempus. Nullam tempor arcu turpis, vel euismod eros tincidunt nec.',
+  tags: [
+    {
+      titulo: 'Bullying',
+      color: 'blue',
+    },
+    {
+      titulo: 'Comunicação',
+      color: 'green',
+    },
+    {
+      titulo: 'Autocompaixão',
+      color: 'pink',
+    },
+  ],
+  pesquisadores: [
+    {
+      nome: 'Caio Andrade',
+    },
+    {
+      nome: 'Flavio Vianna',
+    },
+    {
+      nome: 'Kevin',
+    },
+    {
+      nome: 'Giovanni',
+    },
+    {
+      nome: 'Eduardo',
+    },
+  ],
+  afiliacoes: [
+    {
+      nome: 'PUCRS',
+    },
+    {
+      nome: 'PUCSP',
+    },
+    {
+      nome: 'Univats',
+    },
+    {
+      nome: 'Marista',
+    },
+    {
+      nome: 'UFSC',
+    },
+  ],
+};
 
 function Projetos(): JSX.Element {
   return (
@@ -63,7 +115,20 @@ function Projetos(): JSX.Element {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <ProjectItem />
+            <Flex
+              align="center"
+              justify="center"
+              direction={{ base: 'column', md: 'row' }}
+              gap={{ base: '2', md: '6' }}
+              w="full"
+            >
+              {/**
+               * projects.filter(project => project.isActive === true).map(project => return <ProjectItem project={Project} />)
+               */}
+              <ProjectItem project={Project} />
+              <ProjectItem project={Project} />
+              <ProjectItem project={Project} />
+            </Flex>
           </TabPanel>
           <TabPanel>
             <Flex
@@ -73,8 +138,11 @@ function Projetos(): JSX.Element {
               gap={{ base: '2', md: '6' }}
               w="full"
             >
-              <ProjectItem />
-              <ProjectItem />
+              {/**
+               * projects.filter(project => project.isActive === false).map(project => return <ProjectItem project={Project} />)
+               */}
+              <ProjectItem project={Project} />
+              <ProjectItem project={Project} />
             </Flex>
           </TabPanel>
         </TabPanels>

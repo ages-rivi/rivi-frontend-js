@@ -21,68 +21,14 @@ interface Afiliacoes {
   nome: string;
 }
 
-const PROJECT: Project = {
-  titulo: 'Projeto XXX',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis lectus sed odio ornare, in posuere ligula euismod. Etiam sed venenatis magna. Morbi libero lacus. Donec vitae elit viverra, mattis ligula eu, facilisis nisl. Morbi malesuada, tellus feugiat convallis tempus. Nullam tempor arcu turpis, vel euismod eros tincidunt nec.',
-  tags: [
-    {
-      titulo: 'Bullying',
-      color: 'blue',
-    },
-    {
-      titulo: 'Comunicação',
-      color: 'green',
-    },
-    {
-      titulo: 'Autocompaixão',
-      color: 'pink',
-    },
-  ],
-  pesquisadores: [
-    {
-      nome: 'Caio Andrade',
-    },
-    {
-      nome: 'Flavio Vianna',
-    },
-    {
-      nome: 'Kevin',
-    },
-    {
-      nome: 'Giovanni',
-    },
-    {
-      nome: 'Eduardo',
-    },
-  ],
-  afiliacoes: [
-    {
-      nome: 'PUCRS',
-    },
-    {
-      nome: 'PUCSP',
-    },
-    {
-      nome: 'Univats',
-    },
-    {
-      nome: 'Marista',
-    },
-    {
-      nome: 'UFSC',
-    },
-  ],
-};
-
-function TagsStack(): JSX.Element {
-  if (!PROJECT.tags) {
+function TagsStack({ tags }): JSX.Element {
+  if (!tags) {
     return <Box />;
   }
 
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
-      {PROJECT.tags.map((sm) => {
+      {tags.map((sm) => {
         return (
           <Tag
             size="sm"
@@ -99,15 +45,15 @@ function TagsStack(): JSX.Element {
   );
 }
 
-function ResearcherStack(): JSX.Element {
-  if (!PROJECT.pesquisadores) {
+function ResearcherStack({ pesquisadores }): JSX.Element {
+  if (!pesquisadores) {
     return <Box />;
   }
 
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
       <Text>
-        {PROJECT.pesquisadores
+        {pesquisadores
           .map((pesquisador) => {
             return pesquisador.nome;
           })
@@ -118,15 +64,15 @@ function ResearcherStack(): JSX.Element {
   );
 }
 
-function AfiliacoesStack(): JSX.Element {
-  if (!PROJECT.afiliacoes) {
+function AfiliacoesStack({ afiliacoes }): JSX.Element {
+  if (!afiliacoes) {
     return <Box />;
   }
 
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
       <Text>
-        {PROJECT.afiliacoes
+        {afiliacoes
           .map((afiliacao) => {
             return afiliacao.nome;
           })
@@ -137,7 +83,7 @@ function AfiliacoesStack(): JSX.Element {
   );
 }
 
-function ProjectItem(): JSX.Element {
+function ProjectItem({ project }): JSX.Element {
   return (
     <Box
       borderBottom={1}
@@ -158,10 +104,10 @@ function ProjectItem(): JSX.Element {
         m="auto"
       >
         <Text py="30px" fontWeight="medium" fontSize="2xl">
-          {PROJECT.titulo}
+          {project.titulo}
         </Text>
-        <Text paddingBottom="20px">{PROJECT.description}</Text>
-        <TagsStack />
+        <Text paddingBottom="20px">{project.description}</Text>
+        <TagsStack tags={project.tags} />
       </Flex>
       <Flex
         color="gray.700"
@@ -171,8 +117,8 @@ function ProjectItem(): JSX.Element {
         maxW="300.px"
         m="auto"
       >
-        <ResearcherStack />
-        <AfiliacoesStack />
+        <ResearcherStack pesquisadores={project.pesquisadores} />
+        <AfiliacoesStack afiliacoes={project.afiliacoes} />
       </Flex>
     </Box>
   );
