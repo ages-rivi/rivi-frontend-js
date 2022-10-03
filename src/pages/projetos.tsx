@@ -29,19 +29,19 @@ const Project = {
   ],
   pesquisadores: [
     {
-      nome: 'Caio Andrade',
+      nome: 'Sofia Nunes',
     },
     {
-      nome: 'Flavio Vianna',
+      nome: 'Mariana da Cunha',
     },
     {
-      nome: 'Kevin',
+      nome: 'Ana Luiza Alves',
     },
     {
-      nome: 'Giovanni',
+      nome: 'Bruno Almeida',
     },
     {
-      nome: 'Eduardo',
+      nome: 'Alexandre Nogueira',
     },
   ],
   afiliacoes: [
@@ -52,7 +52,7 @@ const Project = {
       nome: 'PUCSP',
     },
     {
-      nome: 'Univats',
+      nome: 'Concordia',
     },
     {
       nome: 'Marista',
@@ -116,11 +116,11 @@ function Projetos(): JSX.Element {
         <TabPanels>
           <TabPanel>
             <Flex
-              align="center"
               justify="center"
               direction={{ base: 'column', md: 'row' }}
               gap={{ base: '2', md: '6' }}
               w="full"
+              wrap="wrap"
             >
               {/**
                * projects.filter(project => project.isActive === true).map(project => return <ProjectItem project={Project} />)
@@ -132,11 +132,11 @@ function Projetos(): JSX.Element {
           </TabPanel>
           <TabPanel>
             <Flex
-              align="center"
               justify="center"
               direction={{ base: 'column', md: 'row' }}
               gap={{ base: '2', md: '6' }}
               w="full"
+              wrap="wrap"
             >
               {/**
                * projects.filter(project => project.isActive === false).map(project => return <ProjectItem project={Project} />)
