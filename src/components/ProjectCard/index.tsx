@@ -69,10 +69,19 @@ function AfiliacoesStack({ afiliacoes }): JSX.Element {
     return <Box />;
   }
 
+  const afiliacoesUnicas = afiliacoes.filter((afiliacao, index) => {
+    return (
+      index ===
+      afiliacoes.findIndex((outro) => {
+        return afiliacao.nome === outro.nome;
+      })
+    );
+  });
+
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
       <Text>
-        {afiliacoes
+        {afiliacoesUnicas
           .map((afiliacao) => {
             return afiliacao.nome;
           })
