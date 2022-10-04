@@ -37,7 +37,16 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Grupo',
-    href: '/grupo',
+    children: [
+      {
+        label: 'Quem Somos',
+        href: '/grupo',
+      },
+      {
+        label: 'Linhas de Pesquisa e Projetos',
+        href: '/projetos',
+      },
+    ],
   },
   {
     label: 'Artigos',
