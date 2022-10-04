@@ -94,17 +94,17 @@ function AfiliacoesStack({ afiliacoes }): JSX.Element {
   );
 }
 
-function IconStack({ estado }): JSX.Element {
+function IconProject({ estado }): JSX.Element {
   if (!estado) {
     return <Box />;
   }
 
   if (estado === 'ativo') {
-    return <CheckCircleIcon color=" green.400" />;
+    return <CheckCircleIcon boxSize={4} color="green.400" />;
   }
 
   if (estado === 'off') {
-    return <TimeIcon color="orange.400" />;
+    return <TimeIcon boxSize={4} color="orange.400" />;
   }
 }
 
@@ -129,7 +129,7 @@ function ProjectItem({ project }): JSX.Element {
         maxW="300.px"
         m="auto"
       >
-        <IconStack estado={project.estado} />
+        <IconProject estado={project.estado} />
       </Flex>
       <Flex
         color="gray.700"
