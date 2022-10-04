@@ -65,7 +65,15 @@ const Project = {
   estado: 'ativo',
 };
 
+let Project2;
+
+function copyProject(): void {
+  Project2 = { ...Project };
+  Project2.estado = 'off';
+}
+
 function Projetos(): JSX.Element {
+  copyProject();
   return (
     <Flex direction="column" p="5">
       <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
@@ -143,8 +151,8 @@ function Projetos(): JSX.Element {
               {/**
                * projects.filter(project => project.isActive === false).map(project => return <ProjectItem project={Project} />)
                */}
-              <ProjectItem project={Project} />
-              <ProjectItem project={Project} />
+              <ProjectItem project={Project2} />
+              <ProjectItem project={Project2} />
             </Flex>
           </TabPanel>
         </TabPanels>
