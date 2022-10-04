@@ -61,6 +61,8 @@ const Project = {
       nome: 'UFSC',
     },
   ],
+
+  estado: 'ativo',
 };
 
 function Projetos(): JSX.Element {
