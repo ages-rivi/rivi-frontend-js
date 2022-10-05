@@ -18,6 +18,7 @@ function EditaProjetos(): JSX.Element {
 export default EditaProjetos;
 */
 
+import { CheckCircleIcon, TimeIcon } from '@chakra-ui/icons';
 import { Flex, Text } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { ChakraUITable } from 'react-chakra-ui-table';
@@ -43,7 +44,11 @@ function TodoListTable() {
       Header: 'Completed',
       accessor: 'completed',
       Cell: ({ value }) => {
-        return value ? '✅' : '❌';
+        return value ? (
+          <CheckCircleIcon boxSize={5} color="green.400" />
+        ) : (
+          <TimeIcon boxSize={5} color="orange.400" />
+        );
       },
     },
   ];
