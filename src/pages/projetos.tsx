@@ -9,6 +9,8 @@ import {
 } from '@chakra-ui/react';
 import ProjectItem from '@components/ProjectCard';
 
+// json para back-end
+
 const Project = {
   titulo: 'Projeto XXX',
   description:
