@@ -26,16 +26,7 @@ import { IconType } from 'react-icons';
 import * as icons from 'react-icons/fi';
 
 import { ReactNode, ReactText } from 'react';
-import {
-  FiBell,
-  FiChevronDown,
-  FiCompass,
-  FiHome,
-  FiMenu,
-  FiSettings,
-  FiStar,
-  FiTrendingUp
-} from 'react-icons/fi';
+import { FiBell, FiChevronDown, FiMenu } from 'react-icons/fi';
 
 interface SidebarProps {
   sidebarItens: SideItem[];
@@ -45,10 +36,10 @@ interface SideItem {
   icon: IconType;
   name: string;
   href?: string;
-  children?: Array<ChildrenItem>;
+  sub?: Array<Sub>;
 }
 
-interface ChildrenItem {
+interface Sub {
   name: string;
   href: string;
 }
@@ -62,7 +53,7 @@ const SIDE_ITENS: Array<SideItem> = [
   {
     icon: icons.FiFileText,
     name: 'Questionários',
-    children: [
+    sub: [
       { name: 'Listar', href: '/' },
       {
         name: 'Adicionar',
@@ -73,7 +64,7 @@ const SIDE_ITENS: Array<SideItem> = [
   {
     icon: icons.FiUser,
     name: 'Pesquisadores',
-    children: [
+    sub: [
       { name: 'Listar', href: '/' },
       {
         name: 'Adicionar',
@@ -84,7 +75,7 @@ const SIDE_ITENS: Array<SideItem> = [
   {
     icon: icons.FiUser,
     name: 'Linhas de Pesquisa',
-    children: [
+    sub: [
       { name: 'Listar', href: '/' },
       {
         name: 'Adicionar',
@@ -92,18 +83,6 @@ const SIDE_ITENS: Array<SideItem> = [
       },
     ],
   },
-];
-
-interface LinkItemProps {
-  name: string;
-  icon: IconType;
-}
-const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
 ];
 
 export default function SidebarWithHeader({
@@ -133,7 +112,6 @@ export default function SidebarWithHeader({
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
@@ -146,7 +124,7 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
-function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
+function SidebarContent({ onClose }: SidebarProps): JSX.Element {
   return (
     <Box
       transition="3s ease"
@@ -156,18 +134,13 @@ function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
-      {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Img src="/Logo.svg" />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {SIDE_ITENS.map((link) => {
-        return (
-          <NavItem key={link.name} icon={link.icon}>
-            {link.name}
-          </NavItem>
-        );
+        return <NavItem key={link.name}>{link}</NavItem>;
       })}
     </Box>
   );
@@ -178,7 +151,7 @@ interface NavItemProps extends FlexProps {
   children: ReactText;
 }
 
-function NavItem({ icon, children, ...rest }: NavItemProps): JSX.Element {
+function NavItem({ children }: SideItem): JSX.Element {
   return (
     <Link
       href="#"
@@ -196,19 +169,29 @@ function NavItem({ icon, children, ...rest }: NavItemProps): JSX.Element {
           bg: 'cyan.400',
           color: 'white',
         }}
-        {...rest}
       >
-        {icon && (
+        {children.icon && (
           <Icon
             mr="4"
             fontSize="16"
             _groupHover={{
               color: 'white',
             }}
-            as={icon}
+            as={children.icon}
           />
         )}
-        {children}
+        {children.name}
+        {children.sub && (
+          <Icon
+            alignSelf="flex-end"
+            mr="4"
+            fontSize="16"
+            _groupHover={{
+              color: 'white',
+            }}
+            as={icons.FiChevronDown}
+          />
+        )}
       </Flex>
     </Link>
   );
@@ -218,7 +201,7 @@ interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 
-function MobileNav({ onOpen, ...rest }: MobileProps) {
+function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
