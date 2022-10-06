@@ -100,11 +100,11 @@ function IconProject({ estado }): JSX.Element {
   }
 
   if (estado === 'ativo') {
-    return <CheckCircleIcon boxSize={4} color="green.400" />;
+    return <TimeIcon boxSize={4} color="orange.400" />;
   }
 
   if (estado === 'off') {
-    return <TimeIcon boxSize={4} color="orange.400" />;
+    return <CheckCircleIcon boxSize={4} color="green.400" />;
   }
 }
 
