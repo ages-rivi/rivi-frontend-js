@@ -1,12 +1,9 @@
 import {
   Avatar,
   Box,
-  BoxProps,
   CloseButton,
-  Drawer,
-  DrawerContent,
+  Collapse,
   Flex,
-  FlexProps,
   HStack,
   Icon,
   IconButton,
@@ -25,8 +22,7 @@ import {
 import { IconType } from 'react-icons';
 import * as icons from 'react-icons/fi';
 
-import { ReactNode, ReactText } from 'react';
-import { FiBell, FiChevronDown, FiMenu } from 'react-icons/fi';
+import { FiChevronDown, FiMenu } from 'react-icons/fi';
 
 interface SidebarProps {
   sidebarItens: SideItem[];
@@ -92,15 +88,12 @@ export default function SidebarWithHeader({
 }): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-      <SidebarContent
-        onClose={() => {
-          return onClose;
-        }}
-        display={{ base: 'none', md: 'block' }}
-      />
-      <Drawer
-        autoFocus={false}
+    <Box
+      minH="100vh"
+      bg={useColorModeValue('gray.100', 'gray.900')}
+      boxShadow="2xl"
+    >
+      <Box
         isOpen={isOpen}
         placement="left"
         onClose={onClose}
@@ -108,10 +101,8 @@ export default function SidebarWithHeader({
         onOverlayClick={onClose}
         size="full"
       >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} />
-        </DrawerContent>
-      </Drawer>
+        <SidebarContent onClose={onClose} />
+      </Box>
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
@@ -120,13 +111,10 @@ export default function SidebarWithHeader({
   );
 }
 
-interface SidebarProps extends BoxProps {
-  onClose: () => void;
-}
-
-function SidebarContent({ onClose }: SidebarProps): JSX.Element {
+function SidebarContent(): JSX.Element {
   return (
     <Box
+      boxShadow="2xl"
       transition="3s ease"
       bg={useColorModeValue('white', 'gray.900')}
       borderRight="1px"
@@ -137,7 +125,7 @@ function SidebarContent({ onClose }: SidebarProps): JSX.Element {
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Img src="/Logo.svg" />
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+        <CloseButton display={{ base: 'flex', md: 'none' }} />
       </Flex>
       {SIDE_ITENS.map((link) => {
         return <NavItem key={link.name}>{link}</NavItem>;
@@ -146,65 +134,80 @@ function SidebarContent({ onClose }: SidebarProps): JSX.Element {
   );
 }
 
-interface NavItemProps extends FlexProps {
-  icon: IconType;
-  children: ReactText;
-}
-
 function NavItem({ children }: SideItem): JSX.Element {
+  const { isOpen, onToggle } = useDisclosure();
+
   return (
-    <Link
-      href="#"
-      style={{ textDecoration: 'none' }}
-      _focus={{ boxShadow: 'none' }}
-    >
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: 'cyan.400',
-          color: 'white',
-        }}
+    <>
+      <Link
+        onClick={onToggle}
+        href={children.href && children.href}
+        style={{ textDecoration: 'none' }}
+        _focus={{ boxShadow: 'none' }}
       >
-        {children.icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
-            as={children.icon}
-          />
-        )}
-        {children.name}
-        {children.sub && (
-          <Icon
-            alignSelf="flex-end"
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
-            as={icons.FiChevronDown}
-          />
-        )}
-      </Flex>
-    </Link>
+        <Box
+          alignContent="space-around"
+          p="4"
+          mx="4"
+          borderRadius="lg"
+          role="group"
+          cursor="pointer"
+          _hover={{
+            bg: 'gray.100',
+          }}
+          backgroundColor={isOpen ? 'gray.100' : 'white'}
+        >
+          {children.icon && <Icon mr="4" fontSize="16" as={children.icon} />}
+          {children.name}
+          {children.sub && (
+            <Icon
+              alignSelf="flex-end"
+              mr="4"
+              fontSize="16"
+              as={icons.FiChevronDown}
+            />
+          )}
+        </Box>
+      </Link>
+      {children.sub && (
+        <Collapse in={isOpen} animateOpacity>
+          {children.sub.map((sub: Sub) => {
+            return (
+              <HStack
+                p="4"
+                mx="4"
+                borderRadius="lg"
+                role="group"
+                cursor="pointer"
+                _hover={{
+                  bg: 'cyan.400',
+                  color: 'white',
+                }}
+              >
+                <Icon mr="4" fontSize="16" as={icons.FiCircle} />
+                <Link href={sub.href}>
+                  <Text>{sub.name}</Text>
+                </Link>
+              </HStack>
+            );
+          })}
+        </Collapse>
+      )}
+    </>
   );
 }
 
-interface MobileProps extends FlexProps {
+interface MobileProps {
   onOpen: () => void;
 }
 
 function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element {
   return (
     <Flex
-      ml={{ base: 0, md: 60 }}
+      boxShadow="lg"
+      ml="270px"
+      mr="30px"
+      mt="25px"
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
@@ -213,6 +216,7 @@ function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element {
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       justifyContent={{ base: 'space-between', md: 'flex-end' }}
       {...rest}
+      borderRadius="10"
     >
       <IconButton
         display={{ base: 'flex', md: 'none' }}
@@ -232,12 +236,6 @@ function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element {
       </Text>
 
       <HStack spacing={{ base: '0', md: '6' }}>
-        <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell />}
-        />
         <Flex alignItems="center">
           <Menu>
             <MenuButton
