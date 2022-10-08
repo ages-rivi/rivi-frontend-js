@@ -65,15 +65,8 @@ const Project = {
   estado: 'ativo',
 };
 
-let Project2;
-
-function copyProject(): void {
-  Project2 = { ...Project };
-  Project2.estado = 'off';
-}
-
 function Projetos(): JSX.Element {
-  copyProject();
+  const project = { ...Project, estado: 'off' };
   return (
     <Flex direction="column" p="5">
       <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
@@ -118,7 +111,7 @@ function Projetos(): JSX.Element {
           Projetos
         </Text>
       </Flex>
-      <Tabs variant="enclosed" align="center" justify="center">
+      <Tabs variant="enclosed" align="center" justifyContent="center">
         <TabList mb="1em">
           <Tab _selected={{ color: 'white', bg: 'teal.500' }}>Em Andamento</Tab>
           <Tab _selected={{ color: 'white', bg: 'teal.500' }}>Finalizados</Tab>
@@ -151,8 +144,8 @@ function Projetos(): JSX.Element {
               {/**
                * projects.filter(project => project.isActive === false).map(project => return <ProjectItem project={Project} />)
                */}
-              <ProjectItem project={Project2} />
-              <ProjectItem project={Project2} />
+              <ProjectItem project={project} />
+              <ProjectItem project={project} />
             </Flex>
           </TabPanel>
         </TabPanels>
