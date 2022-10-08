@@ -1,110 +1,84 @@
-/* import { Flex, Text } from '@chakra-ui/react';
-// import ProjectItem from '@components/ProjectCard';
-import DataTable from '@components/DataTable';
+import { Box, Flex, Spinner } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import DataTable from 'react-data-table-component';
 
-function ListaProjetos
-(): JSX.Element {
-  return (
-    <Flex direction="column">
-      <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
-        <Text textAlign="center" fontWeight="medium" fontSize="5xl">
-          Edita Projetos
-        </Text>
-      </Flex>
-      <DataTable />
-    </Flex>
-  );
-}
-
-export default ListaProjetos
-;
-*/
-
-import { CheckCircleIcon, TimeIcon } from '@chakra-ui/icons';
-import { Flex, Text } from '@chakra-ui/react';
-import { useEffect, useRef, useState } from 'react';
-import { ChakraUITable } from 'react-chakra-ui-table';
-
-// Example Table
-function TodoListTable() {
-  const columns = [
-    {
-      Header: '#',
-      Cell: ({ row }) => {
-        return <Text>{row.index + 1}</Text>;
-      },
+export const columns = [
+  {
+    name: 'Title',
+    selector: 'title',
+    sortable: true,
+  },
+  {
+    name: 'Director',
+    selector: 'director',
+    sortable: true,
+  },
+  {
+    name: 'Genres',
+    selector: 'genres',
+    sortable: true,
+    cell: (d: { genres: string[] }): JSX.Element => {
+      return <span>{d.genres.join(', ')}</span>;
     },
-    {
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
-      Header: 'Title',
-      accessor: 'title',
-    },
-    {
-      Header: 'Completed',
-      accessor: 'completed',
-      Cell: ({ value }) => {
-        return value ? (
-          <CheckCircleIcon boxSize={5} color="green.400" />
-        ) : (
-          <TimeIcon boxSize={5} color="orange.400" />
-        );
-      },
-    },
-  ];
+  },
+  {
+    name: 'Year',
+    selector: 'year',
+    sortable: true,
+  },
+];
 
-  const [data, setData] = useState(null);
+export const data = [
+  {
+    id: 1,
+    title: 'Beetlejuice',
+    year: '1988',
+    runtime: '92',
+    genres: ['Comedy', 'Fantasy'],
+    director: 'Tim Burton',
+    actors: 'Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page',
+    plot: 'A couple of recently deceased ghosts contract the services of a "bio-exorcist" in order to remove the obnoxious new owners of their house.',
+    posterUrl:
+      'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwODE3MDE0MV5BMl5BanBnXkFtZTgwNTk1MjI4MzE@._V1_SX300.jpg',
+  },
+];
 
-  const loadData = useRef();
-
-  loadData.current = async () => {
-    const urls = [
-      'https://jsonplaceholder.typicode.com/users',
-      'https://jsonplaceholder.typicode.com/todos',
-    ];
-
-    try {
-      const result = await Promise.all(
-        urls.map((url) => {
-          return fetch(url).then((r) => {
-            return r.json();
-          });
-        })
-      );
-
-      if (result.length === 2) {
-        // index 0 is user
-        // index 1 is todo
-        const todoList = result[1].map((todo) => {
-          todo.user = result[0].find((i) => {
-            return i.id === todo.userId;
-          });
-          todo.name = todo.user?.name;
-          return todo;
-        });
-
-        setData(todoList);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export default function ListaProjetos(): React.ReactNode {
+  const [isRenddered, setIsRended] = useState(false);
 
   useEffect(() => {
-    loadData.current();
+    setIsRended(true);
   }, []);
 
-  return data && <ChakraUITable columns={columns} data={data} />;
-}
+  // replace null with loading spinner
+  if (!isRenddered)
+    return (
+      <Flex w="full" justify="center" p="20">
+        <Spinner color="teal" />
+      </Flex>
+    );
 
-function ListaProjetos(): JSX.Element {
   return (
-    <Flex p={6} direction="column">
-      <TodoListTable />
+    <Flex justify="center" p="6">
+      <Box
+        maxW="1000px"
+        w="full"
+        border="1px solid gray"
+        borderColor="gray.200"
+        borderRadius="md"
+      >
+        <DataTable
+          // eslint-disable-next-line
+          // @ts-ignore
+          columns={columns}
+          data={data}
+          noHeader
+          defaultSortField="id"
+          defaultSortAsc={false}
+          pagination
+          highlightOnHover
+        />
+      </Box>
     </Flex>
   );
 }
-
-export default ListaProjetos;
