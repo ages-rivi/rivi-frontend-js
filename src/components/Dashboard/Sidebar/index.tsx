@@ -11,9 +11,6 @@ import {
   Link,
   Menu,
   MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
   Text,
   useColorModeValue,
   useDisclosure,
@@ -22,11 +19,7 @@ import {
 import { IconType } from 'react-icons';
 import * as icons from 'react-icons/fi';
 
-import { FiChevronDown, FiMenu } from 'react-icons/fi';
-
-interface SidebarProps {
-  sidebarItens: SideItem[];
-}
+import { FiMenu } from 'react-icons/fi';
 
 interface SideItem {
   icon: IconType;
@@ -81,33 +74,72 @@ const SIDE_ITENS: Array<SideItem> = [
   },
 ];
 
-export default function SidebarWithHeader({
-  children,
-}: {
-  children: ReactNode;
-}): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+type NavProps = {
+  children: SideItem;
+};
+
+function NavItem(props: NavProps): JSX.Element {
+  const { isOpen, onToggle } = useDisclosure();
+
+  const { href, icon, name, sub } = props.children;
+
   return (
-    <Box
-      minH="100vh"
-      bg={useColorModeValue('gray.100', 'gray.900')}
-      boxShadow="2xl"
-    >
-      <Box
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
+    <>
+      <Link
+        onClick={onToggle}
+        href={href && href}
+        style={{ textDecoration: 'none' }}
+        _focus={{ boxShadow: 'none' }}
       >
-        <SidebarContent onClose={onClose} />
-      </Box>
-      <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
-      </Box>
-    </Box>
+        <Box
+          alignContent="space-around"
+          p="4"
+          mx="4"
+          borderRadius="lg"
+          role="group"
+          cursor="pointer"
+          _hover={{
+            bg: 'gray.100',
+          }}
+          backgroundColor={isOpen ? 'gray.100' : 'white'}
+        >
+          {icon && <Icon mr="4" fontSize="16" as={icon} />}
+          {name}
+          {sub && (
+            <Icon
+              alignSelf="flex-end"
+              mr="4"
+              fontSize="16"
+              as={icons.FiChevronDown}
+            />
+          )}
+        </Box>
+      </Link>
+      {sub && (
+        <Collapse in={isOpen} animateOpacity>
+          {sub.map((submenu: Sub) => {
+            return (
+              <HStack
+                p="4"
+                mx="4"
+                borderRadius="lg"
+                role="group"
+                cursor="pointer"
+                _hover={{
+                  bg: 'cyan.400',
+                  color: 'white',
+                }}
+              >
+                <Icon boxSize={2} mr="6px" as={icons.FiCircle} />
+                <Link href={submenu.href}>
+                  <Text>{submenu.name}</Text>
+                </Link>
+              </HStack>
+            );
+          })}
+        </Collapse>
+      )}
+    </>
   );
 }
 
@@ -128,77 +160,10 @@ function SidebarContent(): JSX.Element {
         <CloseButton display={{ base: 'flex', md: 'none' }} />
       </Flex>
       {SIDE_ITENS.map((link) => {
-        return <NavItem key={link.name}>{link}</NavItem>;
+        return <NavItem>{link}</NavItem>;
       })}
     </Box>
   );
-}
-
-function NavItem({ children }: SideItem): JSX.Element {
-  const { isOpen, onToggle } = useDisclosure();
-
-  return (
-    <>
-      <Link
-        onClick={onToggle}
-        href={children.href && children.href}
-        style={{ textDecoration: 'none' }}
-        _focus={{ boxShadow: 'none' }}
-      >
-        <Box
-          alignContent="space-around"
-          p="4"
-          mx="4"
-          borderRadius="lg"
-          role="group"
-          cursor="pointer"
-          _hover={{
-            bg: 'gray.100',
-          }}
-          backgroundColor={isOpen ? 'gray.100' : 'white'}
-        >
-          {children.icon && <Icon mr="4" fontSize="16" as={children.icon} />}
-          {children.name}
-          {children.sub && (
-            <Icon
-              alignSelf="flex-end"
-              mr="4"
-              fontSize="16"
-              as={icons.FiChevronDown}
-            />
-          )}
-        </Box>
-      </Link>
-      {children.sub && (
-        <Collapse in={isOpen} animateOpacity>
-          {children.sub.map((sub: Sub) => {
-            return (
-              <HStack
-                p="4"
-                mx="4"
-                borderRadius="lg"
-                role="group"
-                cursor="pointer"
-                _hover={{
-                  bg: 'cyan.400',
-                  color: 'white',
-                }}
-              >
-                <Icon mr="4" fontSize="16" as={icons.FiCircle} />
-                <Link href={sub.href}>
-                  <Text>{sub.name}</Text>
-                </Link>
-              </HStack>
-            );
-          })}
-        </Collapse>
-      )}
-    </>
-  );
-}
-
-interface MobileProps {
-  onOpen: () => void;
 }
 
 function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element {
@@ -260,10 +225,14 @@ function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element {
                   </Text>
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
-                  <FiChevronDown />
+                  <Icon as={icons.FiChevronDown} />
                 </Box>
               </HStack>
             </MenuButton>
+            {/*
+
+            TO BE DEFINED
+            
             <MenuList
               bg={useColorModeValue('white', 'gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}
@@ -273,10 +242,37 @@ function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element {
               <MenuItem>Billing</MenuItem>
               <MenuDivider />
               <MenuItem>Sign out</MenuItem>
-            </MenuList>
+            </MenuList> */}
           </Menu>
         </Flex>
       </HStack>
     </Flex>
   );
+}
+
+export default function SidebarWithHeader({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <Box
+      minH="100vh"
+      bg={useColorModeValue('gray.100', 'gray.900')}
+      boxShadow="2xl"
+    >
+      <Box>
+        <SidebarContent />
+      </Box>
+      <MobileNav onOpen={onOpen} />
+      <Box ml={{ base: 0, md: 60 }} p="4">
+        {children}
+      </Box>
+    </Box>
+  );
+}
+
+interface MobileProps {
+  onOpen: () => void;
 }
