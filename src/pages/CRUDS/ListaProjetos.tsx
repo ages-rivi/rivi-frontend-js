@@ -4,26 +4,26 @@ import DataTable from 'react-data-table-component';
 
 export const columns = [
   {
-    name: 'Title',
-    selector: 'title',
+    name: 'Título',
+    selector: 'titulo',
     sortable: true,
   },
   {
-    name: 'Director',
-    selector: 'director',
+    name: 'Pesquisador',
+    selector: 'pesquisador',
     sortable: true,
   },
   {
-    name: 'Genres',
-    selector: 'genres',
+    name: 'Tags',
+    selector: 'tags',
     sortable: true,
-    cell: (d: { genres: string[] }): JSX.Element => {
-      return <span>{d.genres.join(', ')}</span>;
+    cell: (d: { tags: string[] }): JSX.Element => {
+      return <span>{d.tags.join(', ')}</span>;
     },
   },
   {
-    name: 'Year',
-    selector: 'year',
+    name: 'Afiliações',
+    selector: 'afiliacoes',
     sortable: true,
   },
 ];
@@ -31,25 +31,27 @@ export const columns = [
 export const data = [
   {
     id: 1,
-    title: 'Beetlejuice',
-    year: '1988',
-    runtime: '92',
-    genres: ['Comedy', 'Fantasy'],
-    director: 'Tim Burton',
-    actors: 'Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page',
-    plot: 'A couple of recently deceased ghosts contract the services of a "bio-exorcist" in order to remove the obnoxious new owners of their house.',
+    titulo: 'Relações Interpessoais',
+    afiliacoes: 'PUCRS',
+
+    tags: ['Autocompaixão', 'Comunicação'],
+    pesquisador: 'Tim Burton',
+    alunos: 'Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page',
+    descricao:
+      'A couple of recently deceased ghosts contract the services of a "bio-exorcist" in order to remove the obnoxious new owners of their house.',
     posterUrl:
       'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwODE3MDE0MV5BMl5BanBnXkFtZTgwNTk1MjI4MzE@._V1_SX300.jpg',
   },
   {
     id: 2,
-    title: 'Ceetlejuice',
-    year: '2088',
+    titulo: 'Convivio escolar',
+    afiliacoes: 'URGS',
     runtime: '42',
-    genres: ['Autocompaixao', 'Comedy', 'Fantasy'],
-    director: 'Bim Burton',
-    actors: 'Alec Baldwin, Lula Davis, Bolsonaro, Ciro',
-    plot: 'B couple of recently deceased ghosts contract the services of a "bio-exorcist" in order to remove the obnoxious new owners of their house.',
+    tags: ['Autocompaixão', 'Bullying', 'Comunicação'],
+    pesquisador: 'Bim Burton',
+    alunos: 'Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page',
+    descricao:
+      'B couple of recently deceased ghosts contract the services of a "bio-exorcist" in order to remove the obnoxious new owners of their house.',
     posterUrl:
       'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwODE3MDE0MV5BMl5BanBnXkFtZTgwNTk1MjI4MzE@._V1_SX300.jpg',
   },
@@ -79,7 +81,7 @@ export default function ListaProjetos(): React.ReactNode {
       setDadoFiltrado(data);
     } else {
       const dadoFiltradoTmp = data.filter((projeto) => {
-        return projeto.title.toLowerCase().includes(value.toLowerCase());
+        return projeto.titulo.toLowerCase().includes(value.toLowerCase());
       });
       setDadoFiltrado(dadoFiltradoTmp);
     }
@@ -96,8 +98,8 @@ export default function ListaProjetos(): React.ReactNode {
       >
         <Flex justify="left" direction="row" p="5">
           <svg
-            width="21"
-            height="21"
+            width="45"
+            height="45"
             viewBox="0 0 21 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +121,7 @@ export default function ListaProjetos(): React.ReactNode {
           </Text>
           <Input
             name="titulo"
-            placeholder="Ex: Relações Interpessoais"
+            placeholder="🔎  Digite o título que deseja buscar..."
             onChange={onChange}
           />
         </Flex>
