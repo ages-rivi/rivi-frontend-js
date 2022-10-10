@@ -3,7 +3,7 @@ import { Box, Flex, HStack, Tag, Text } from '@chakra-ui/react';
 
 interface Projects {
   titulo: string;
-  description?: string;
+  descricao?: string;
   tags?: Array<Tags>;
   pesquisadores?: Array<Pesquisadores>;
   afiliacoes?: Array<Afiliacoes>;
@@ -57,7 +57,7 @@ function ResearcherStack({ pesquisadores }): JSX.Element {
       <Text>
         {pesquisadores
           .map((pesquisador) => {
-            return pesquisador.nome;
+            return pesquisador;
           })
           .join(', ')}
       </Text>
@@ -71,6 +71,7 @@ function AfiliacoesStack({ afiliacoes }): JSX.Element {
     return <Box />;
   }
 
+  /*
   const afiliacoesUnicas = afiliacoes.filter((afiliacao, index) => {
     return (
       index ===
@@ -79,17 +80,18 @@ function AfiliacoesStack({ afiliacoes }): JSX.Element {
       })
     );
   });
+  */
 
+  const afiliacoesUnicas = Array.from(new Set(afiliacoes));
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
       <Text>
         {afiliacoesUnicas
           .map((afiliacao) => {
-            return afiliacao.nome;
+            return afiliacao;
           })
           .join(', ')}
       </Text>
-      ;
     </HStack>
   );
 }
@@ -142,7 +144,7 @@ function ProjectItem({ project }): JSX.Element {
         <Text py="30px" fontWeight="medium" fontSize="2xl">
           {project.titulo}
         </Text>
-        <Text paddingBottom="20px">{project.description}</Text>
+        <Text paddingBottom="20px">{project.descricao}</Text>
       </Flex>
       <Flex
         color="gray.700"
