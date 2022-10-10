@@ -7,18 +7,37 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react';
+import ProjectCard from '@components/ProjectCard';
+import { useState } from 'react';
 
 export default function EditaProjetos(): JSX.Element {
+  const [emptyData, setEmptyData] = useState({
+    titulo: '',
+    descricao: '',
+    tags: '',
+    pesquisadores: '',
+    afiliacoes: '',
+    estado: '',
+  });
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    console.log(emptyData);
+  };
 
-    // eslint-disable-next-line
-    // @ts-ignore
-    // eslint-disable-next-line
-    for (const [key, value] of data.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+  const onChange = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const { name, value } = e.currentTarget;
+    setEmptyData({ ...emptyData, [name]: value });
+  };
+
+  const onChangeTmp = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const { name, value } = e.currentTarget;
+    setEmptyData({
+      ...emptyData,
+      [name]: value.split(','),
+    });
   };
 
   return (
@@ -27,54 +46,74 @@ export default function EditaProjetos(): JSX.Element {
         <Text fontWeight="medium" fontSize="3xl">
           Projeto dos Alunos
         </Text>
-        <form onSubmit={handleSubmit}>
-          <Flex direction="column" p={4} gap="3">
-            <FormControl>
-              <FormLabel>Título</FormLabel>
-              <Input name="title" placeholder="Ex: Relações Interpessoais" />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Temáticas</FormLabel>
-              <Input name="themes" placeholder="Ex: autocompaixão" />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Aluno</FormLabel>
-              <Input name="student" placeholder="Ex: John Doe" />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Afiliações</FormLabel>
-              <Input name="afiliations" placeholder="PUCRS" />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Descrição</FormLabel>
-              <Textarea
-                name="description"
-                placeholder="Ex: Descrição do projeto"
-              />
-            </FormControl>
-            <Flex
-              direction={{ base: 'column', md: 'row' }}
-              mt="14"
-              gap={{ base: '2', md: '6' }}
-              w={{ base: 'full', md: 'sm' }}
-            >
-              <Button
-                colorScheme="teal"
-                w={{ base: 'full', md: '' }}
-                type="submit"
+        <Flex direction="row" gap="3">
+          <form onSubmit={handleSubmit}>
+            <Flex direction="column" p={4} gap="3">
+              <FormControl>
+                <FormLabel>Título</FormLabel>
+                <Input
+                  name="titulo"
+                  placeholder="Ex: Relações Interpessoais"
+                  onChange={onChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Temáticas</FormLabel>
+                <Input
+                  name="tags"
+                  placeholder="Ex: autocompaixão"
+                  onChange={onChangeTmp}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Pesquisadores</FormLabel>
+                <Input
+                  name="pesquisadores"
+                  placeholder="Ex: John Doe"
+                  onChange={onChangeTmp}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Afiliações</FormLabel>
+                <Input
+                  name="afiliacoes"
+                  placeholder="PUCRS"
+                  onChange={onChangeTmp}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Descrição</FormLabel>
+                <Textarea
+                  name="descricao"
+                  placeholder="Ex: Descrição do projeto"
+                  onChange={onChange}
+                />
+              </FormControl>
+              <Flex
+                direction={{ base: 'column', md: 'row' }}
+                mt="14"
+                gap={{ base: '2', md: '6' }}
+                w={{ base: 'full', md: 'sm' }}
               >
-                Salvar
-              </Button>
-              <Button
-                colorScheme="gray"
-                variant="outline"
-                w={{ base: 'full', md: '' }}
-              >
-                Cancelar
-              </Button>
+                <Button
+                  colorScheme="teal"
+                  w={{ base: 'full', md: '' }}
+                  type="submit"
+                >
+                  Salvar
+                </Button>
+                <Button
+                  colorScheme="gray"
+                  variant="outline"
+                  w={{ base: 'full', md: '' }}
+                >
+                  Cancelar
+                </Button>
+              </Flex>
             </Flex>
-          </Flex>
-        </form>
+          </form>
+          <ProjectCard project={emptyData} />
+        </Flex>
       </Flex>
     </Flex>
   );
