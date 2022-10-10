@@ -5,13 +5,13 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text
+  Text,
 } from '@chakra-ui/react';
 import ProjectItem from '@components/ProjectCard';
 
 // json para back-end
 
-const export Project = {
+export const Project = {
   titulo: 'Projeto XXX',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis lectus sed odio ornare, in posuere ligula euismod. Etiam sed venenatis magna. Morbi libero lacus. Donec vitae elit viverra, mattis ligula eu, facilisis nisl. Morbi malesuada, tellus feugiat convallis tempus. Nullam tempor arcu turpis, vel euismod eros tincidunt nec.',
