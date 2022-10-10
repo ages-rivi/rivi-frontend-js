@@ -136,6 +136,7 @@ export default function ListaProjetos(): React.ReactNode {
           defaultSortAsc={false}
           pagination
           highlightOnHover
+          selectableRows
         />
       </Box>
     </Flex>
