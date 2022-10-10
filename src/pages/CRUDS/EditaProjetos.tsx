@@ -22,7 +22,7 @@ export default function EditaProjetos(): JSX.Element {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(emptyData);
+    // console.log(emptyData);
   };
 
   const onChange = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -41,12 +41,19 @@ export default function EditaProjetos(): JSX.Element {
   };
 
   return (
-    <Flex direction="column" p="5">
-      <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
-        <Text fontWeight="medium" fontSize="3xl">
+    <Flex justify="center" direction="column" p="5">
+      <Flex
+        justify="center"
+        direction="column"
+        maxW="1330px"
+        w="full"
+        margin="auto"
+        gap="3"
+      >
+        <Text textAlign="center" fontWeight="medium" fontSize="3xl">
           Projeto dos Alunos
         </Text>
-        <Flex direction="row" gap="3">
+        <Flex justify="center" direction="row" gap="3">
           <form onSubmit={handleSubmit}>
             <Flex direction="column" p={4} gap="3">
               <FormControl>
