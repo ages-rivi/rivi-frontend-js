@@ -67,15 +67,10 @@ export const Project = {
   estado: 'ativo',
 };
 
-let Project2;
-
-function copyProject(): void {
-  Project2 = { ...Project };
-  Project2.estado = 'off';
-}
+const Project2 = { ...Project };
+Project2.estado = 'finalizado';
 
 function Projetos(): JSX.Element {
-  copyProject();
   return (
     <Flex direction="column" p="5">
       <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
@@ -120,7 +115,7 @@ function Projetos(): JSX.Element {
           Projetos
         </Text>
       </Flex>
-      <Tabs variant="enclosed" align="center" justify="center">
+      <Tabs variant="enclosed" align="center">
         <TabList mb="1em">
           <Tab _selected={{ color: 'white', bg: 'teal.500' }}>Em Andamento</Tab>
           <Tab _selected={{ color: 'white', bg: 'teal.500' }}>Finalizados</Tab>
