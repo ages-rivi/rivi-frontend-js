@@ -94,3 +94,22 @@ e um menu irá guiar o usuário para realizar o commit da maneira adequada.
 É importante notar que o processo de commit também pode ser feito normalmente da maneira tradicional.
 
 Commits que forem dos padrões de commit do Conventional Commits serão rejeitados automaticamente.
+
+
+## DEPLOY NA URL DE PRODUÇÃO
+
+Para acontecer o deploy na url disponibilizada para o cliente, devemos fazer o seguinte:
+
+- Clonar o projeto e dar um pull na main
+
+- Adicionar um novo remote a configuração do git:
+```
+git remote add github https://github.com/ages-rivi/rivi-frontend-js.git
+```
+
+- Enviar as mudanças para o repositório do github:
+```
+git push github
+```
+
+- Vai ser requisitado  o login, estão disponíveis no discord do grupo
