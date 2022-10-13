@@ -1,4 +1,15 @@
-import { Box, Divider, Flex, Input, Spinner, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Divider,
+  Flex,
+  Input,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Spinner,
+  Text,
+} from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 
@@ -26,6 +37,28 @@ export const columns = [
     selector: 'afiliacoes',
     sortable: true,
   },
+  {
+    key: 'action',
+    text: 'Action',
+    className: 'action',
+    width: 100,
+    align: 'left',
+    sortable: false,
+    cell: () => {
+      return (
+        <Menu>
+          <MenuButton size="lg">
+            <Text fontSize="2xl">...</Text>
+          </MenuButton>
+          <MenuList minWidth="100px">
+            <MenuItem>Visualizar</MenuItem>
+            <MenuItem>Editar</MenuItem>
+            <MenuItem>Deletar</MenuItem>
+          </MenuList>
+        </Menu>
+      );
+    },
+  },
 ];
 
 export const data = [
@@ -44,6 +77,32 @@ export const data = [
   },
   {
     id: 2,
+    titulo: 'Convivio escolar',
+    afiliacoes: 'URGS',
+    runtime: '42',
+    tags: ['Autocompaixão', 'Bullying', 'Comunicação'],
+    pesquisador: 'Bim Burton',
+    alunos: 'Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page',
+    descricao:
+      'B couple of recently deceased ghosts contract the services of a "bio-exorcist" in order to remove the obnoxious new owners of their house.',
+    posterUrl:
+      'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwODE3MDE0MV5BMl5BanBnXkFtZTgwNTk1MjI4MzE@._V1_SX300.jpg',
+  },
+  {
+    id: 3,
+    titulo: 'Convivio escolar',
+    afiliacoes: 'URGS',
+    runtime: '42',
+    tags: ['Autocompaixão', 'Bullying', 'Comunicação'],
+    pesquisador: 'Bim Burton',
+    alunos: 'Alec Baldwin, Geena Davis, Annie McEnroe, Maurice Page',
+    descricao:
+      'B couple of recently deceased ghosts contract the services of a "bio-exorcist" in order to remove the obnoxious new owners of their house.',
+    posterUrl:
+      'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwODE3MDE0MV5BMl5BanBnXkFtZTgwNTk1MjI4MzE@._V1_SX300.jpg',
+  },
+  {
+    id: 4,
     titulo: 'Convivio escolar',
     afiliacoes: 'URGS',
     runtime: '42',
@@ -137,6 +196,7 @@ export default function ListaProjetos(): React.ReactNode {
           pagination
           highlightOnHover
           selectableRows
+          button
         />
       </Box>
     </Flex>
