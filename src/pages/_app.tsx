@@ -10,8 +10,10 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactNode {
     <ChakraProvider>
       <Flex direction="column" h="100vh">
         {!router.pathname.includes('/auth') && <Navbar />}
-        <Component {...pageProps} />
-        {!router.pathname.includes('/auth') && <Footer />}
+        <Flex h="full" direction="column" justify="space-between">
+          <Component {...pageProps} />
+          {!router.pathname.includes('/auth') && <Footer />}
+        </Flex>
       </Flex>
     </ChakraProvider>
   );
