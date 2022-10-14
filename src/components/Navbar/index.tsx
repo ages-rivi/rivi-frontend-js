@@ -37,16 +37,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Grupo',
-    children: [
-      {
-        label: 'Quem Somos',
-        href: '/grupo',
-      },
-      {
-        label: 'Linhas de Pesquisa e Projetos',
-        href: '/projetos',
-      },
-    ],
+    href: '/grupo',
   },
   {
     label: 'Artigos',
@@ -243,7 +234,7 @@ export default function WithSubnavigation(): JSX.Element {
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
-          display={{ base: 'flex', lg: 'none' }}
+          display={{ base: 'flex', md: 'none' }}
         >
           <IconButton
             onClick={onToggle}
@@ -256,7 +247,7 @@ export default function WithSubnavigation(): JSX.Element {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Img src="/Logo.svg" />
-          <Flex display={{ base: 'none', lg: 'flex' }} ml={10} m="auto">
+          <Flex display={{ base: 'none', md: 'flex' }} ml={10} m="auto">
             <DesktopNav />
           </Flex>
         </Flex>
