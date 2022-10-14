@@ -55,6 +55,7 @@ export const columns = [
             <MenuItem>Editar</MenuItem>
             <MenuItem>Deletar</MenuItem>
             <MenuItem>Visualizar</MenuItem>
+            <MenuItem>Arquivar</MenuItem>
           </MenuList>
         </Menu>
       );
