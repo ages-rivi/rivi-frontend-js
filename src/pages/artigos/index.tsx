@@ -23,7 +23,7 @@ export default function Artigos({
         setIsLoading={setIsLoading}
         setSearchResult={setArticlesState}
         filter={Filter}
-        url="search?q"
+        url="search?q="
       />
       <Flex>
         <ArticleGrid isLoading={isLoading} articles={articlesState} />
