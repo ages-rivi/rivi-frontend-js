@@ -22,7 +22,7 @@ export default function EditaProjetos(): JSX.Element {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    // console.log(emptyData);
+    console.log(emptyData);
   };
 
   const onChange = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -65,6 +65,14 @@ export default function EditaProjetos(): JSX.Element {
                 />
               </FormControl>
               <FormControl>
+                <FormLabel>Descrição</FormLabel>
+                <Textarea
+                  name="descricao"
+                  placeholder="Ex: Descrição do projeto"
+                  onChange={onChange}
+                />
+              </FormControl>
+              <FormControl>
                 <FormLabel>Temáticas</FormLabel>
                 <Input
                   name="tags"
@@ -86,14 +94,6 @@ export default function EditaProjetos(): JSX.Element {
                   name="afiliacoes"
                   placeholder="PUCRS"
                   onChange={onChangeTmp}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Descrição</FormLabel>
-                <Textarea
-                  name="descricao"
-                  placeholder="Ex: Descrição do projeto"
-                  onChange={onChange}
                 />
               </FormControl>
               <Flex
