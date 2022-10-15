@@ -65,7 +65,7 @@ As configurações do Prettier já estão definidas no projeto, porém é precis
 
 Caso esteja usando o VSCode, basta abrir o painel de _Extenções_ (`Ctrl + Shift + X`), pesquisar por "Prettier" e instalar.
 
-Códigos que fojem dos padrões de formatação do Prettier serão rejeitados automáticamente.
+Códigos que fojem dos padrões de formatação do Prettier serão rejeitados automaticamente.
 
 ### **2. Eslint**
 
@@ -73,7 +73,7 @@ O Eslint é uma ferramenta de padronização de código, e abre a possíbilidade
 
 Caso esteja usando o VSCode, basta abrir o painel de _Extenções_ (`Ctrl + Shift + X`), pesquisar por "Eslint" e instalar.
 
-Códigos que fojem dos padrões de formatação do Eslint serão rejeitados automáticamente.
+Códigos que fojem dos padrões de formatação do Eslint serão rejeitados automaticamente.
 
 ### **3. Typescript**
 
@@ -94,3 +94,22 @@ e um menu irá guiar o usuário para realizar o commit da maneira adequada.
 É importante notar que o processo de commit também pode ser feito normalmente da maneira tradicional.
 
 Commits que forem dos padrões de commit do Conventional Commits serão rejeitados automaticamente.
+
+
+## DEPLOY NA URL DE PRODUÇÃO
+
+Para acontecer o deploy na url disponibilizada para o cliente, devemos fazer o seguinte:
+
+- Clonar o projeto e dar um pull na main
+
+- Adicionar um novo remote a configuração do git:
+```
+git remote add github https://github.com/ages-rivi/rivi-frontend-js.git
+```
+
+- Enviar as mudanças para o repositório do github:
+```
+git push github
+```
+
+- Vai ser requisitado  o login, estão disponíveis no discord do grupo

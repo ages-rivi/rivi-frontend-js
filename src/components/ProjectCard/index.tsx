@@ -23,7 +23,7 @@ interface Afiliacoes {
   nome: string;
 }
 
-function TagsStack({ tags }): JSX.Element {
+function TagsStack({ tags }: { tags: Tags[] | undefined }): JSX.Element {
   if (!tags) {
     return <Box />;
   }
@@ -47,7 +47,11 @@ function TagsStack({ tags }): JSX.Element {
   );
 }
 
-function ResearcherStack({ pesquisadores }): JSX.Element {
+function ResearcherStack({
+  pesquisadores,
+}: {
+  pesquisadores: Pesquisadores[] | undefined;
+}): JSX.Element {
   if (!pesquisadores) {
     return <Box />;
   }
@@ -66,7 +70,11 @@ function ResearcherStack({ pesquisadores }): JSX.Element {
   );
 }
 
-function AfiliacoesStack({ afiliacoes }): JSX.Element {
+function AfiliacoesStack({
+  afiliacoes,
+}: {
+  afiliacoes: Afiliacoes[] | undefined;
+}): JSX.Element {
   if (!afiliacoes) {
     return <Box />;
   }
@@ -108,7 +116,7 @@ function IconProject({ estado }): JSX.Element {
   return <Box />;
 }
 
-function ProjectItem({ project }): JSX.Element {
+function ProjectItem({ project }: { project: Projects }): JSX.Element {
   return (
     <Box
       borderBottom={1}

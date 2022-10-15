@@ -115,7 +115,7 @@ function Projetos(): JSX.Element {
           Projetos
         </Text>
       </Flex>
-      <Tabs variant="enclosed" align="center">
+      <Tabs variant="enclosed" align="center" justifyContent="center">
         <TabList mb="1em">
           <Tab _selected={{ color: 'white', bg: 'teal.500' }}>Em Andamento</Tab>
           <Tab _selected={{ color: 'white', bg: 'teal.500' }}>Finalizados</Tab>
