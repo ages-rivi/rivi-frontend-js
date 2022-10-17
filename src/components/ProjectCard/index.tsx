@@ -1,13 +1,14 @@
 import { CheckCircleIcon, TimeIcon } from '@chakra-ui/icons';
 import { Box, Flex, HStack, Tag, Text } from '@chakra-ui/react';
 
-interface Projects {
+export interface Projects {
+  id: string;
   titulo: string;
   descricao?: string;
-  tags?: Array<Tags>;
-  pesquisadores?: Array<Pesquisadores>;
-  afiliacoes?: Array<Afiliacoes>;
-  estado: string;
+  estado?: string;
+  tag?: Array<Tags>;
+  pesquisadoresIds?: Array<Pesquisadores>;
+  // afiliacoes?: Array<Afiliacoes>; ainda nao tem no banco
 }
 
 interface Tags {
@@ -104,12 +105,12 @@ function AfiliacoesStack({
   );
 }
 
-function IconProject({ estado }): JSX.Element {
-  if (estado === 'ativo') {
+function IconProject({ project }: { project: Projects }): JSX.Element {
+  if (project.estado === 'ativo') {
     return <TimeIcon boxSize={4} color="orange.400" />;
   }
 
-  if (estado === 'finalizado') {
+  if (project.estado === 'finalizado') {
     return <CheckCircleIcon boxSize={4} color="green.400" />;
   }
 
@@ -137,7 +138,7 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
         maxW="300.px"
         m="auto"
       >
-        <IconProject estado={project.estado} />
+        <IconProject project={project} />
       </Flex>
       <Flex
         color="gray.700"
@@ -160,12 +161,13 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
         maxW="300.px"
         m="auto"
       >
-        <TagsStack tags={project.tags} />
-        <ResearcherStack pesquisadores={project.pesquisadores} />
-        <AfiliacoesStack afiliacoes={project.afiliacoes} />
+        <TagsStack tags={project.tag} />
+        <ResearcherStack pesquisadores={project.pesquisadoresIds} />
       </Flex>
     </Box>
   );
 }
+
+// <AfiliacoesStack afiliacoes={project.afiliacoes} />
 
 export default ProjectItem;

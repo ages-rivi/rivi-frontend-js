@@ -8,45 +8,12 @@ import {
   Text,
 } from '@chakra-ui/react';
 import ProjectItem from '@components/ProjectCard';
+import getAllProjects from '@lib/projetos';
+import { GetStaticProps } from 'next';
 
-// json para back-end
-
-export const Project = {
-  titulo: 'Projeto XXX',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis lectus sed odio ornare, in posuere ligula euismod. Etiam sed venenatis magna. Morbi libero lacus. Donec vitae elit viverra, mattis ligula eu, facilisis nisl. Morbi malesuada, tellus feugiat convallis tempus. Nullam tempor arcu turpis, vel euismod eros tincidunt nec.',
-  tags: [
-    {
-      titulo: 'Bullying',
-      color: 'blue',
-    },
-    {
-      titulo: 'Comunicação',
-      color: 'green',
-    },
-    {
-      titulo: 'Autocompaixão',
-      color: 'pink',
-    },
-  ],
-  pesquisadores: [
-    {
-      nome: 'Sofia Nunes',
-    },
-    {
-      nome: 'Mariana da Cunha',
-    },
-    {
-      nome: 'Ana Luiza Alves',
-    },
-    {
-      nome: 'Bruno Almeida',
-    },
-    {
-      nome: 'Alexandre Nogueira',
-    },
-  ],
-  afiliacoes: [
+// No banco nao tem afiliacoes e precisa por
+/*
+afiliacoes: [
     {
       nome: 'PUCRS',
     },
@@ -63,14 +30,9 @@ export const Project = {
       nome: 'UFSC',
     },
   ],
+ */
 
-  estado: 'ativo',
-};
-
-const Project2 = { ...Project };
-Project2.estado = 'finalizado';
-
-function Projetos(): JSX.Element {
+function Projetos({ projects }): JSX.Element {
   return (
     <Flex direction="column" p="5">
       <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
@@ -129,12 +91,13 @@ function Projetos(): JSX.Element {
               w="full"
               wrap="wrap"
             >
-              {/**
-               * projects.filter(project => project.isActive === true).map(project => return <ProjectItem project={Project} />)
-               */}
-              <ProjectItem project={Project} />
-              <ProjectItem project={Project} />
-              <ProjectItem project={Project} />
+              {projects
+                .filter((project) => {
+                  return project.estado === 'em andamendto';
+                })
+                .map((project) => {
+                  return <ProjectItem project={project} />;
+                })}
             </Flex>
           </TabPanel>
           <TabPanel>
@@ -145,11 +108,13 @@ function Projetos(): JSX.Element {
               w="full"
               wrap="wrap"
             >
-              {/**
-               * projects.filter(project => project.isActive === false).map(project => return <ProjectItem project={Project} />)
-               */}
-              <ProjectItem project={Project2} />
-              <ProjectItem project={Project2} />
+              {projects
+                .filter((project) => {
+                  return project.estado === 'concluído';
+                })
+                .map((project) => {
+                  return <ProjectItem project={project} />;
+                })}
             </Flex>
           </TabPanel>
         </TabPanels>
@@ -157,5 +122,11 @@ function Projetos(): JSX.Element {
     </Flex>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const projects = await getAllProjects();
+  return { props: { projects } };
+  // const nova chamada
+};
 
 export default Projetos;
