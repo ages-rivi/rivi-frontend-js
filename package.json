@@ -12,17 +12,21 @@
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
-    "@chakra-ui/react": "^2.3.1",
+    "@chakra-ui/react": "^2.3.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "axios": "^0.27.2",
+    "core-js": "^3.25.5",
     "chakra-react-select": "^4.3.0",
     "formik": "^2.2.9",
     "framer-motion": "^6",
     "next": "12.2.5",
     "react": "18.2.0",
+    "react-data-table-component": "^7.5.3",
+    "react-data-table-component-extensions": "^1.6.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "styled-components": "^5.3.6",
     "vercel": "^28.4.2"
   },
   "devDependencies": {
