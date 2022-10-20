@@ -20,14 +20,14 @@ export default function ArticleGrid({
   return (
     <Flex maxW="1000px" w="full" mx="auto" align="center" justify="center">
       <Grid mt="6" templateColumns="repeat(12, 1fr)" gap={6} w="full">
-        {articles.map(({ href, title, category, description }) => {
+        {articles.map(({ id, title, category, description }) => {
           return (
-            <GridItem colSpan={{ base: 12, md: 6 }} key={href}>
+            <GridItem colSpan={{ base: 12, md: 6 }} key={id}>
               <ArticleCard
+                id={id}
                 title={title}
                 category={category}
                 description={description}
-                href={href}
               />
             </GridItem>
           );

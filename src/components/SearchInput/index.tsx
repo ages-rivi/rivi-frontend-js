@@ -27,7 +27,7 @@ export default function SearchInput({
     },
     onSubmit: async ({ search }, { resetForm }) => {
       const { data } = await api.get(
-        `${url}=${search}${filter.length > 0 ? `&filter=${filter}` : ''}`
+        `${url}${search}${filter.length > 0 ? `${filter}` : ''}`
       );
       setSearchResult(data);
       resetForm();
@@ -39,13 +39,18 @@ export default function SearchInput({
   }, [formik.isSubmitting]);
 
   useEffect(() => {
-    console.log(filter);
+    if (filter.length) formik.submitForm();
   }, [filter]);
 
   return (
-    <Flex maxW="600px" w="full" gap="2">
-      {Filter({ setFilter })}
-      <Flex w="full" direction="column" gap="2">
+    <Flex
+      maxW="600px"
+      w="full"
+      gap="2"
+      direction={{ base: 'column', sm: 'row' }}
+    >
+      <Flex w="full" gap="2">
+        {Filter({ setFilter })}
         <Input
           placeholder="Pesquisar"
           name="search"
