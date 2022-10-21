@@ -11,13 +11,13 @@ import {
 import { Member, Social } from '@interfaces/Member';
 import { FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi';
 
-function TagsStack({ tags }: { tags: string[] }): JSX.Element {
+export function TagsStack({ tags }: { tags: string[] }): JSX.Element {
   if (!tags) {
     return <Box />;
   }
 
   function getColor(index: number): string {
-    switch (index) {
+    switch (index % 3) {
       case 0:
         return 'blue';
       case 1:
