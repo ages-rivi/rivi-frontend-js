@@ -14,7 +14,7 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
-  VStack
+  VStack,
 } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import * as icons from 'react-icons/fi';
@@ -261,6 +261,7 @@ export default function SidebarWithHeader({
       minH="100vh"
       bg={useColorModeValue('gray.100', 'gray.900')}
       boxShadow="2xl"
+      w="full"
     >
       <Box>
         <SidebarContent />
