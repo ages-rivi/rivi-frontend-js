@@ -6,7 +6,7 @@ export interface Projects {
   titulo: string;
   descricao?: string;
   estado?: string;
-  tag?: Array<Tags>;
+  tag?: Array<string>;
   pesquisadoresIds?: Array<Pesquisadores>;
   // afiliacoes?: Array<Afiliacoes>; ainda nao tem no banco
 }
@@ -18,29 +18,30 @@ interface Tags {
 
 interface Pesquisadores {
   nome: string;
+  afiliacao: string;
 }
 
 interface Afiliacoes {
   nome: string;
 }
 
-function TagsStack({ tags }: { tags: Tags[] | undefined }): JSX.Element {
-  if (!tags) {
+function TagsStack({ tag }: { tag: string[] | undefined }): JSX.Element {
+  if (tag.length == 0) {
     return <Box />;
   }
 
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
-      {tags.map((sm) => {
+      {tag.map((sm) => {
         return (
           <Tag
             size="sm"
             variant="solid"
-            colorScheme={sm.color}
+            colorScheme="teal"
             fontSize="sm"
             fontWeight="bold"
           >
-            {sm.titulo}
+            {sm}
           </Tag>
         );
       })}
@@ -62,7 +63,7 @@ function ResearcherStack({
       <Text>
         {pesquisadores
           .map((pesquisador) => {
-            return pesquisador;
+            return pesquisador.nome;
           })
           .join(', ')}
       </Text>
@@ -161,7 +162,7 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
         maxW="300.px"
         m="auto"
       >
-        <TagsStack tags={project.tag} />
+        <TagsStack tag={project.tag} />
         <ResearcherStack pesquisadores={project.pesquisadoresIds} />
       </Flex>
     </Box>

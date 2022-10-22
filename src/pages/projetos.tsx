@@ -7,8 +7,8 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react';
-import ProjectItem from '@components/ProjectCard';
-import getAllProjects from '@lib/projetos';
+import ProjectItem, { Projects } from '@components/ProjectCard';
+import projetosApi from '@lib/projetos';
 import { GetStaticProps } from 'next';
 
 // No banco nao tem afiliacoes e precisa por
@@ -93,7 +93,7 @@ function Projetos({ projects }): JSX.Element {
             >
               {projects
                 .filter((project) => {
-                  return project.estado === 'em andamendto';
+                  return project.estado === 'em andamento';
                 })
                 .map((project) => {
                   return <ProjectItem project={project} />;
@@ -124,7 +124,14 @@ function Projetos({ projects }): JSX.Element {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projects = await getAllProjects();
+  const projects: Array<Projects> = await projetosApi.getAllProjects();
+
+  const res = projects.map(async (element) => {
+    const temp = await projetosApi.getAllResearchersByProjectId(element.id);
+    return (element.pesquisadoresIds = temp);
+  });
+  console.log('aqui', res);
+
   return { props: { projects } };
   // const nova chamada
 };
