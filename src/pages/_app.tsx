@@ -8,9 +8,9 @@ import { useRouter } from 'next/router';
 function MyApp({ Component, pageProps }: AppProps): React.ReactNode {
   const router = useRouter();
   const renderNavFooter = !(
-    router.pathname.includes('/auth') || router.pathname.includes('/CRUDS')
+    router.pathname.includes('/auth') || router.pathname.includes('/admin')
   );
-  const isDashboard = router.pathname.includes('/CRUDS');
+  const isDashboard = router.pathname.includes('/admin');
 
   return (
     <ChakraProvider>
