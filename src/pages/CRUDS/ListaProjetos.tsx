@@ -3,13 +3,12 @@ import {
   Button,
   Divider,
   Flex,
-  Input,
-  Menu,
+  Input, Link, Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Spinner,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
@@ -206,9 +205,11 @@ export default function ListaProjetos(): React.ReactNode {
         </Box>
       </Flex>
       <Flex justify="center">
-        <Button colorScheme="teal" w={{ base: '500', md: '' }}>
+        <Link href= 'http://localhost:3000/CRUDS/EditaProjetos' >
+        <Button colorScheme="teal" w={{ base: '500', md: '' }} >
           Novo Projeto
         </Button>
+        </Link>
       </Flex>
     </Flex>
   );
