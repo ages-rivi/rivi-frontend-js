@@ -7,7 +7,8 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react';
-import ProjectItem, { Projects } from '@components/ProjectCard';
+import ProjectItem from '@components/ProjectCard';
+import { Projects } from '@interfaces/Projects';
 import projetosApi from '@lib/projetos';
 import { GetStaticProps } from 'next';
 
@@ -32,7 +33,8 @@ afiliacoes: [
   ],
  */
 
-function Projetos({ projects }): JSX.Element {
+function Projetos({ projects }: { projects: Projects }): JSX.Element {
+  // console.log('ZZZ', projects);
   return (
     <Flex direction="column" p="5">
       <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
@@ -125,15 +127,7 @@ function Projetos({ projects }): JSX.Element {
 
 export const getStaticProps: GetStaticProps = async () => {
   const projects: Array<Projects> = await projetosApi.getAllProjects();
-
-  const res = projects.map(async (element) => {
-    const temp = await projetosApi.getAllResearchersByProjectId(element.id);
-    return (element.pesquisadoresIds = temp);
-  });
-  console.log('aqui', res);
-
   return { props: { projects } };
-  // const nova chamada
 };
 
 export default Projetos;

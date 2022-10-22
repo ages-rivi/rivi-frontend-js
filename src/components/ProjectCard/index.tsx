@@ -1,29 +1,7 @@
 import { CheckCircleIcon, TimeIcon } from '@chakra-ui/icons';
 import { Box, Flex, HStack, Tag, Text } from '@chakra-ui/react';
-
-export interface Projects {
-  id: string;
-  titulo: string;
-  descricao?: string;
-  estado?: string;
-  tag?: Array<string>;
-  pesquisadoresIds?: Array<Pesquisadores>;
-  // afiliacoes?: Array<Afiliacoes>; ainda nao tem no banco
-}
-
-interface Tags {
-  titulo: string;
-  color: string;
-}
-
-interface Pesquisadores {
-  nome: string;
-  afiliacao: string;
-}
-
-interface Afiliacoes {
-  nome: string;
-}
+import { Projects } from '@interfaces/Projects';
+import { Pesquisadores } from '@interfaces/Reasercher';
 
 function TagsStack({ tag }: { tag: string[] | undefined }): JSX.Element {
   if (tag.length == 0) {
@@ -75,7 +53,7 @@ function ResearcherStack({
 function AfiliacoesStack({
   afiliacoes,
 }: {
-  afiliacoes: Afiliacoes[] | undefined;
+  afiliacoes: Pesquisadores[] | undefined;
 }): JSX.Element {
   if (!afiliacoes) {
     return <Box />;
@@ -92,13 +70,12 @@ function AfiliacoesStack({
   });
   */
 
-  const afiliacoesUnicas = Array.from(new Set(afiliacoes));
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
       <Text>
-        {afiliacoesUnicas
+        {afiliacoes
           .map((afiliacao) => {
-            return afiliacao;
+            return afiliacao.afiliacao;
           })
           .join(', ')}
       </Text>
@@ -163,12 +140,11 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
         m="auto"
       >
         <TagsStack tag={project.tag} />
-        <ResearcherStack pesquisadores={project.pesquisadoresIds} />
+        <ResearcherStack pesquisadores={project.pesquisadores} />
+        <AfiliacoesStack afiliacoes={project.pesquisadores} />
       </Flex>
     </Box>
   );
 }
-
-// <AfiliacoesStack afiliacoes={project.afiliacoes} />
 
 export default ProjectItem;

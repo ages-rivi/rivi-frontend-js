@@ -6,13 +6,6 @@ async function getAllProjects() {
   return projects;
 }
 
-async function getAllResearchersByProjectId(id: string) {
-  const res = await api.get('/projetos/pesquisadoresPorProjeto/' + id);
-  const projects = await res.data;
-  return projects;
-}
-
 export default {
   getAllProjects,
-  getAllResearchersByProjectId,
 };
