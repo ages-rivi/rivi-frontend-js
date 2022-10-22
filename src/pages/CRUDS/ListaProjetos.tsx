@@ -52,9 +52,8 @@ export const columns = [
           </MenuButton>
           <MenuList minWidth="100px">
             <MenuItem>Selecionar</MenuItem>
-            <MenuItem>Editar</MenuItem>
+            <MenuItem>Editar/Visualizar</MenuItem>
             <MenuItem>Deletar</MenuItem>
-            <MenuItem>Visualizar</MenuItem>
             <MenuItem>Arquivar</MenuItem>
           </MenuList>
         </Menu>
