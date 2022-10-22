@@ -12,39 +12,42 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import * as icons from 'react-icons/fi';
+
+const paginationComponentOptions = {
+  rowsPerPageText: 'Itens por página',
+  rangeSeparatorText: 'de',
+  selectAllRowsItem: true,
+  selectAllRowsItemText: 'Todos',
+};
 
 export const columns = [
   {
     name: 'Nome',
     selector: 'nome',
     sortable: true,
+    width: '88%',
   },
   {
     key: 'action',
     text: 'Action',
-    className: 'action',
-    width: 100,
-    align: 'left',
+    width: '10%',
     sortable: false,
-    width: 'col col-lg-7',
-    style: {
-      mr: '0',
-      ml: 'auto',
-    },
     cell: () => {
       return (
         <Menu>
-          <MenuButton size="lg">
-            <Text fontSize="2xl">...</Text>
+          <MenuButton>
+            <Icon as={icons.FiMoreVertical} />
           </MenuButton>
           <MenuList minWidth="100px">
             <MenuItem>Selecionar</MenuItem>
-            <MenuItem>Editar</MenuItem>
+            <MenuItem>
+              Editar / <br /> Visualizar
+            </MenuItem>
             <MenuItem>Deletar</MenuItem>
-            <MenuItem>Visualizar</MenuItem>
             <MenuItem>Arquivar</MenuItem>
           </MenuList>
         </Menu>
@@ -140,6 +143,8 @@ export default function ListaProjetos(): React.ReactNode {
             // eslint-disable-next-line
             // @ts-ignore
             columns={columns}
+            paginationComponentOptions={paginationComponentOptions}
+            className="dataTable"
             data={dadoFiltrado}
             noHeader
             defaultSortField="id"
@@ -152,9 +157,11 @@ export default function ListaProjetos(): React.ReactNode {
         </Box>
       </Flex>
       <Flex justify="center">
-        <Button colorScheme="teal" w={{ base: '500', md: '' }}>
-          Novo Pesquisador
-        </Button>
+        <Link href="/CRUDS/pesquisadores/editar">
+          <Button colorScheme="teal" w={{ base: '500', md: '' }}>
+            Novo Pesquisador
+          </Button>
+        </Link>
       </Flex>
     </Flex>
   );

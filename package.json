@@ -22,7 +22,7 @@
     "react": "18.2.0",
     "react-data-table-component": "^7.5.3",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.6.0",
     "styled-components": "^5.3.6",
     "vercel": "^28.4.2"
   },

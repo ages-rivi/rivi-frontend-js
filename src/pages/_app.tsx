@@ -3,6 +3,7 @@ import Footer from '@components/Footer';
 import Navbar from '@components/Navbar';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps): React.ReactNode {
   const router = useRouter();
