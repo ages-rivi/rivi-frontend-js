@@ -6,11 +6,25 @@ import {
   Input,
   Text,
   Textarea,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  useDisclosure
 } from '@chakra-ui/react';
 import ProjectCard from '@components/ProjectCard';
-import { useState } from 'react';
+import { useState,useRef } from 'react';
+import { useRouter } from 'next/router'
 
 export default function EditaProjetos(): JSX.Element {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = useRef()
+  const router = useRouter()
+  const { query: { row }  } = router
+
+  console.log("KEVIN =>", row)
   const [emptyData, setEmptyData] = useState({
     titulo: '',
     descricao: '',
@@ -19,7 +33,7 @@ export default function EditaProjetos(): JSX.Element {
     afiliacoes: '',
     estado: '',
   });
-
+   
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log(emptyData);
@@ -39,8 +53,9 @@ export default function EditaProjetos(): JSX.Element {
       [name]: value.split(','),
     });
   };
-
+  
   return (
+    <>
     <Flex justify="center" direction="column" p="5">
       <Flex
         justify="center"
@@ -109,13 +124,21 @@ export default function EditaProjetos(): JSX.Element {
                 >
                   Salvar
                 </Button>
-                <Button
-                  colorScheme="gray"
-                  variant="outline"
+                <Button 
+                  colorScheme="teal"
                   w={{ base: 'full', md: '' }}
                 >
                   Cancelar
                 </Button>
+                {row && <Button
+                onClick={onOpen}
+                  colorScheme="teal"
+                  w={{ base: 'full', md: '' }}
+                  type="submit"
+                >
+                  Excluir
+                </Button>}
+                
               </Flex>
             </Flex>
           </form>
@@ -123,5 +146,33 @@ export default function EditaProjetos(): JSX.Element {
         </Flex>
       </Flex>
     </Flex>
+
+    <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+              Delete Customer
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme='red' onClick={onClose} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </>
   );
 }

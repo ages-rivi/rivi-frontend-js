@@ -12,55 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-
-export const columns = [
-  {
-    name: 'Título',
-    selector: 'titulo',
-    sortable: true,
-  },
-  {
-    name: 'Pesquisador',
-    selector: 'pesquisador',
-    sortable: true,
-  },
-  {
-    name: 'Tags',
-    selector: 'tags',
-    sortable: true,
-    cell: (d: { tags: string[] }): JSX.Element => {
-      return <span>{d.tags.join(', ')}</span>;
-    },
-  },
-  {
-    name: 'Afiliações',
-    selector: 'afiliacoes',
-    sortable: true,
-  },
-  {
-    key: 'action',
-    text: 'Action',
-    className: 'action',
-    width: 100,
-    align: 'left',
-    sortable: false,
-    cell: () => {
-      return (
-        <Menu>
-          <MenuButton size="lg">
-            <Text fontSize="2xl">...</Text>
-          </MenuButton>
-          <MenuList minWidth="100px">
-            <MenuItem>Selecionar</MenuItem>
-            <MenuItem>Editar/Visualizar</MenuItem>
-            <MenuItem>Deletar</MenuItem>
-            <MenuItem>Arquivar</MenuItem>
-          </MenuList>
-        </Menu>
-      );
-    },
-  },
-];
+import { useRouter } from 'next/router'
 
 export const data = [
   {
@@ -118,12 +70,63 @@ export const data = [
 ];
 
 export default function ListaProjetos(): React.ReactNode {
+  const router = useRouter()
   const [isRenddered, setIsRended] = useState(false);
   const [dadoFiltrado, setDadoFiltrado] = useState(data);
 
   useEffect(() => {
     setIsRended(true);
   }, []);
+
+  const columns = [
+    {
+      name: 'Título',
+      selector: 'titulo',
+      sortable: true,
+    },
+    {
+      name: 'Pesquisador',
+      selector: 'pesquisador',
+      sortable: true,
+    },
+    {
+      name: 'Tags',
+      selector: 'tags',
+      sortable: true,
+      cell: (d: { tags: string[] }): JSX.Element => {
+        return <span>{d.tags.join(', ')}</span>;
+      },
+    },
+    {
+      name: 'Afiliações',
+      selector: 'afiliacoes',
+      sortable: true,
+    },
+    {
+      key: 'action',
+      text: 'Action',
+      className: 'action',
+      width: 100,
+      align: 'left',
+      sortable: false,
+      cell: (row, index, column, id) => {
+        return (
+          <Menu>
+            <MenuButton size="lg">
+              <Text fontSize="2xl">...</Text>
+            </MenuButton>
+            <MenuList minWidth="100px">
+              <MenuItem onClick={() => {
+                console.log(row)
+                //router.push(`/CRUDS/EditaProjetos/${id}`);
+              }}>Editar/Visualizar</MenuItem>
+              <MenuItem>Deletar</MenuItem>
+            </MenuList>
+          </Menu>
+        );
+      },
+    },
+  ];
 
   // replace null with loading spinner
   if (!isRenddered)
