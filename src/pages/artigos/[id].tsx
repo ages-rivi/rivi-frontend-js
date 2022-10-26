@@ -1,6 +1,6 @@
-import { articlesExtended } from '@api/mock/articles';
 import { Button, Flex, Text } from '@chakra-ui/react';
 import { ArticleExtended } from '@interfaces/Article';
+import axios from 'axios';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { FiFile } from 'react-icons/fi';
 
@@ -52,8 +52,10 @@ interface StaticPathsProps {
 
 // get all establishments ids
 export const getStaticPaths: GetStaticPaths = async () => {
-  // get artigos ids
-  const ids = [{ id: '1' }, { id: '2' }];
+  const { data } = await axios.get(
+    'http://localhost:4000/api/article/artigosId'
+  );
+  const ids = data;
 
   if (!ids) {
     return {
@@ -62,7 +64,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   }
 
-  const paths: StaticPathsProps[] = ids.map((e) => {
+  const paths: StaticPathsProps[] = ids.map((e: { id: any }) => {
     return {
       params: {
         id: e.id,
@@ -80,13 +82,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as { id: string };
 
+  console.log(`http://localhost:4000/api/article/${id}`);
+
   try {
-    const article = articlesExtended.find((e) => {
-      return e.id === id;
-    });
+    const { data } = await axios.get(`http://localhost:4000/api/article/${id}`);
     return {
       props: {
-        article,
+        article: data,
       },
       revalidate: 1 * 60 * 60, // 1 hour
     };
