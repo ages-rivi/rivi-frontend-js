@@ -4,6 +4,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
   Text,
   Textarea,
 } from '@chakra-ui/react';
@@ -12,11 +13,11 @@ import { useState } from 'react';
 
 export default function EditaProjetos(): JSX.Element {
   const [emptyData, setEmptyData] = useState({
-    titulo: '',
-    descricao: '',
+    nome: '',
     tags: '',
-    pesquisadores: '',
-    afiliacoes: '',
+    descricao: '',
+    facebook: '',
+    linkedin: '',
     estado: '',
   });
 
@@ -51,40 +52,24 @@ export default function EditaProjetos(): JSX.Element {
         gap="3"
       >
         <Text textAlign="center" fontWeight="medium" fontSize="3xl">
-          Projeto dos Alunos
+          Novo Pesquisador
         </Text>
         <Flex justify="center" direction="row" gap="3">
           <form onSubmit={handleSubmit}>
             <Flex direction="column" p={4} gap="3">
               <FormControl>
-                <FormLabel>Título</FormLabel>
+                <FormLabel>Nome</FormLabel>
                 <Input
-                  name="titulo"
-                  placeholder="Ex: Relações Interpessoais"
+                  name="nome"
+                  placeholder="Ex: John Doe"
                   onChange={onChange}
                 />
               </FormControl>
               <FormControl>
-                <FormLabel>Temáticas</FormLabel>
-                <Input
+                <FormLabel>Tags</FormLabel>
+                <Select
                   name="tags"
                   placeholder="Ex: autocompaixão"
-                  onChange={onChangeTmp}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Pesquisadores</FormLabel>
-                <Input
-                  name="pesquisadores"
-                  placeholder="Ex: John Doe"
-                  onChange={onChangeTmp}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Afiliações</FormLabel>
-                <Input
-                  name="afiliacoes"
-                  placeholder="PUCRS"
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -94,6 +79,15 @@ export default function EditaProjetos(): JSX.Element {
                   name="descricao"
                   placeholder="Ex: Descrição do projeto"
                   onChange={onChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Facebook</FormLabel>
+                <Input
+                  class="socialmedia"
+                  name="afiliacoes"
+                  placeholder="Ex: link"
+                  onChange={onChangeTmp}
                 />
               </FormControl>
               {/*  */}
