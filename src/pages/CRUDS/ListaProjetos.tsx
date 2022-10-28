@@ -120,7 +120,7 @@ export default function ListaProjetos(): React.ReactNode {
                 console.log(row)
                 //router.push(`/CRUDS/EditaProjetos/${id}`);
               }}>Editar/Visualizar</MenuItem>
-              <MenuItem>Deletar</MenuItem>
+              <MenuItem>Excluir</MenuItem>
             </MenuList>
           </Menu>
         );
