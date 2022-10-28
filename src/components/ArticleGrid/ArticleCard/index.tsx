@@ -6,19 +6,19 @@ interface ArticleCardProps {
   title: string;
   category: string;
   description: string;
-  href: string;
+  id: string;
 }
 
 export default function ArticleCard({
   title,
   category,
   description,
-  href,
+  id,
 }: ArticleCardProps) {
   const router = useRouter();
 
   const navigateToLink = () => {
-    router.push(href);
+    router.push(`/artigos/${id}`);
   };
 
   return (
@@ -30,7 +30,9 @@ export default function ArticleCard({
             <Text fontSize="xl" fontWeight="semibold">
               {limit(title, 25)}
             </Text>
-            <Text>{category}</Text>
+            <Text fontWeight="medium" color="gray.500">
+              {category}
+            </Text>
           </Flex>
           <Text mt="2" mb={{ base: 2, md: 0 }}>
             {limit(description, 60)}

@@ -1,8 +1,9 @@
 export interface Article {
+  id: string;
   title: string;
   category: string;
   description: string;
-  href: string;
+  tags: string[];
 }
 
 export interface ArticleExtended extends Article {
