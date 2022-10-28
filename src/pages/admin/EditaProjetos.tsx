@@ -61,6 +61,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="titulo"
                   placeholder="Ex: Relações Interpessoais"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChange}
                 />
               </FormControl>
@@ -69,6 +71,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Textarea
                   name="descricao"
                   placeholder="Ex: Descrição do projeto"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChange}
                 />
               </FormControl>
@@ -77,6 +81,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="tags"
                   placeholder="Ex: autocompaixão"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -85,6 +91,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="pesquisadores"
                   placeholder="Ex: John Doe"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -93,6 +101,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="afiliacoes"
                   placeholder="PUCRS"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -119,7 +129,11 @@ export default function EditaProjetos(): JSX.Element {
               </Flex>
             </Flex>
           </form>
-          <ProjectCard project={emptyData} />
+          <ProjectCard
+            // eslint-disable-next-line
+            // @ts-ignore
+            project={emptyData}
+          />
         </Flex>
       </Flex>
     </Flex>

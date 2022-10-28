@@ -48,7 +48,11 @@ export const columns = [
     cell: () => {
       return (
         <Menu>
-          <MenuButton size="lg">
+          <MenuButton
+            // eslint-disable-next-line
+            // @ts-ignore
+            size="lg"
+          >
             <Text fontSize="2xl">...</Text>
           </MenuButton>
           <MenuList minWidth="100px">
@@ -186,6 +190,8 @@ export default function ListaProjetos(): React.ReactNode {
             <Input
               name="titulo"
               placeholder="🔎  Digite o título que deseja buscar..."
+              // eslint-disable-next-line
+              // @ts-ignore
               onChange={onChange}
             />
           </Flex>

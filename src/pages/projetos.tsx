@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Flex,
   Tab,
@@ -32,7 +33,7 @@ afiliacoes: [
   ],
  */
 
-function Projetos({ projects }): JSX.Element {
+function Projetos({ projects }: any): JSX.Element {
   return (
     <Flex direction="column" p="5">
       <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
@@ -92,10 +93,10 @@ function Projetos({ projects }): JSX.Element {
               wrap="wrap"
             >
               {projects
-                .filter((project) => {
+                .filter((project: any) => {
                   return project.estado === 'em andamendto';
                 })
-                .map((project) => {
+                .map((project: any) => {
                   return <ProjectItem project={project} />;
                 })}
             </Flex>
@@ -109,10 +110,10 @@ function Projetos({ projects }): JSX.Element {
               wrap="wrap"
             >
               {projects
-                .filter((project) => {
+                .filter((project: any) => {
                   return project.estado === 'concluído';
                 })
-                .map((project) => {
+                .map((project: any) => {
                   return <ProjectItem project={project} />;
                 })}
             </Flex>

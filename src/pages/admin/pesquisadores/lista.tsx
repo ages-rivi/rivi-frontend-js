@@ -12,6 +12,8 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react';
+import getAllResearchers from '@lib/pesquisadores';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
@@ -56,30 +58,13 @@ export const columns = [
   },
 ];
 
-export const data = [
-  {
-    id: 1,
-    nome: 'Pedro',
-  },
-  {
-    id: 2,
-    nome: 'Santana',
-  },
-  {
-    id: 3,
-    nome: 'Timão',
-  },
-  {
-    id: 4,
-    nome: 'Pumba',
-  },
-  {
-    id: 5,
-    nome: 'Mufasa',
-  },
-];
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getAllResearchers();
+  return { props: { data } };
+};
 
-export default function ListaProjetos(): React.ReactNode {
+// eslint-disable-next-line react/prop-types
+export default function ListaProjetos({ data }: any): React.ReactNode {
   const [isRenddered, setIsRended] = useState(false);
   const [dadoFiltrado, setDadoFiltrado] = useState(data);
 
@@ -102,7 +87,8 @@ export default function ListaProjetos(): React.ReactNode {
     if (!value) {
       setDadoFiltrado(data);
     } else {
-      const dadoFiltradoTmp = data.filter((pesquisador) => {
+      // eslint-disable-next-line react/prop-types
+      const dadoFiltradoTmp = data.filter((pesquisador: { nome: string }) => {
         return pesquisador.nome.toLowerCase().includes(value.toLowerCase());
       });
       setDadoFiltrado(dadoFiltradoTmp);
@@ -135,6 +121,8 @@ export default function ListaProjetos(): React.ReactNode {
             <Input
               name="titulo"
               placeholder="🔎  Digite o título que deseja buscar..."
+              // eslint-disable-next-line
+              // @ts-ignore
               onChange={onChange}
             />
           </Flex>
@@ -157,7 +145,7 @@ export default function ListaProjetos(): React.ReactNode {
         </Box>
       </Flex>
       <Flex justify="center">
-        <Link href="/CRUDS/pesquisadores/editar">
+        <Link href="/admin/pesquisadores/edita">
           <Button colorScheme="teal" w={{ base: '500', md: '' }}>
             Novo Pesquisador
           </Button>
