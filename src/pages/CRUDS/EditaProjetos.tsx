@@ -24,7 +24,7 @@ export default function EditaProjetos(): JSX.Element {
   const router = useRouter()
   const { query: { row }  } = router
 
-  console.log("KEVIN =>", row)
+  console.log("", row)
   const [emptyData, setEmptyData] = useState({
     titulo: '',
     descricao: '',

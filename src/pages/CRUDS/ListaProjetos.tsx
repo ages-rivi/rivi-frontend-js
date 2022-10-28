@@ -118,7 +118,7 @@ export default function ListaProjetos(): React.ReactNode {
             <MenuList minWidth="100px">
               <MenuItem onClick={() => {
                 console.log(row)
-                //router.push(`/CRUDS/EditaProjetos/${id}`);
+                router.push(`http://localhost:3000/CRUDS/EditaProjetos`);
               }}>Editar/Visualizar</MenuItem>
               <MenuItem>Excluir</MenuItem>
             </MenuList>
