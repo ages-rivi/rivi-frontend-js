@@ -53,7 +53,7 @@ interface StaticPathsProps {
 // get all establishments ids
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await axios.get(
-    'http://localhost:4000/api/article/artigosId'
+    'https://rivi-backend-node.onrender.com/api/article/artigosId'
   );
   const ids = data;
 
@@ -82,10 +82,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as { id: string };
 
-  console.log(`http://localhost:4000/api/article/${id}`);
+  console.log(`https://rivi-backend-node.onrender.com/api/article/${id}`);
 
   try {
-    const { data } = await axios.get(`http://localhost:4000/api/article/${id}`);
+    const { data } = await axios.get(
+      `https://rivi-backend-node.onrender.com/api/article/${id}`
+    );
     return {
       props: {
         article: data,

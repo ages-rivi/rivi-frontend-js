@@ -33,7 +33,9 @@ export default function Artigos({
 }
 
 export async function getStaticProps() {
-  const { data } = await axios.get('http://localhost:4000/api/article');
+  const { data } = await axios.get(
+    'https://rivi-backend-node.onrender.com/api/article'
+  );
   console.log(data);
   return {
     props: {
