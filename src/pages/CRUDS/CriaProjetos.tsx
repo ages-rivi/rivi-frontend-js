@@ -24,7 +24,6 @@ export default function EditaProjetos(): JSX.Element {
   const router = useRouter()
   const { query: { row }  } = router
 
-
   console.log("", row)
   const [emptyData, setEmptyData] = useState({
     titulo: '',
@@ -67,7 +66,7 @@ export default function EditaProjetos(): JSX.Element {
         gap="3"
       >
         <Text textAlign="center" fontWeight="medium" fontSize="3xl">
-          Projeto dos Alunos
+          Novo Projeto
         </Text>
         <Flex justify="center" direction="row" gap="3">
           <form onSubmit={handleSubmit}>
@@ -131,40 +130,14 @@ export default function EditaProjetos(): JSX.Element {
                 >
                   Cancelar
                 </Button>
-                <Button 
+                {row && <Button
                 onClick={onOpen}
                   colorScheme="teal"
                   w={{ base: 'full', md: '' }}
                   type="submit"
                 >
                   Excluir
-                </Button>
-                <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-              Delete Customer
-            </AlertDialogHeader>
-
-            <AlertDialogBody>
-            Tem certeza que deseja excluir esse projeto? Você não pode desfazer essa ação depois.
-            </AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancelar
-              </Button>
-              <Button colorScheme='red' onClick={onClose} ml={3}>
-                Excluir
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+                </Button>}
                 
               </Flex>
             </Flex>
@@ -173,6 +146,8 @@ export default function EditaProjetos(): JSX.Element {
         </Flex>
       </Flex>
     </Flex>
+
+    
     </>
   );
 }

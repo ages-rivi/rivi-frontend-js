@@ -207,7 +207,7 @@ export default function ListaProjetos(): React.ReactNode {
         </Box>
       </Flex>
       <Flex justify="center">
-        <Link href= 'http://localhost:3000/CRUDS/EditaProjetos' >
+        <Link href= 'http://localhost:3000/CRUDS/CriaProjetos' >
         <Button colorScheme="teal" w={{ base: '500', md: '' }} >
           Novo Projeto
         </Button>
