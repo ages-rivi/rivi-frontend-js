@@ -1,13 +1,14 @@
 import { CheckCircleIcon, TimeIcon } from '@chakra-ui/icons';
 import { Box, Flex, HStack, Tag, Text } from '@chakra-ui/react';
 
-interface Projects {
+export interface Projects {
+  id: string;
   titulo: string;
-  description?: string;
-  tags?: Array<Tags>;
-  pesquisadores?: Array<Pesquisadores>;
-  afiliacoes?: Array<Afiliacoes>;
-  estado: string;
+  descricao?: string;
+  estado?: string;
+  tag?: Array<Tags>;
+  pesquisadoresIds?: Array<Pesquisadores>;
+  // afiliacoes?: Array<Afiliacoes>; ainda nao tem no banco
 }
 
 interface Tags {
@@ -61,7 +62,7 @@ function ResearcherStack({
       <Text>
         {pesquisadores
           .map((pesquisador) => {
-            return pesquisador.nome;
+            return pesquisador;
           })
           .join(', ')}
       </Text>
@@ -79,6 +80,7 @@ function AfiliacoesStack({
     return <Box />;
   }
 
+  /*
   const afiliacoesUnicas = afiliacoes.filter((afiliacao, index) => {
     return (
       index ===
@@ -87,31 +89,28 @@ function AfiliacoesStack({
       })
     );
   });
+  */
 
+  const afiliacoesUnicas = Array.from(new Set(afiliacoes));
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
       <Text>
         {afiliacoesUnicas
           .map((afiliacao) => {
-            return afiliacao.nome;
+            return afiliacao;
           })
           .join(', ')}
       </Text>
-      ;
     </HStack>
   );
 }
 
-function IconProject({ estado }: { estado: string }): JSX.Element {
-  if (!estado) {
-    return <Box />;
-  }
-
-  if (estado === 'ativo') {
+function IconProject({ project }: { project: Projects }): JSX.Element {
+  if (project.estado === 'ativo') {
     return <TimeIcon boxSize={4} color="orange.400" />;
   }
 
-  if (estado === 'off') {
+  if (project.estado === 'finalizado') {
     return <CheckCircleIcon boxSize={4} color="green.400" />;
   }
 
@@ -139,7 +138,7 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
         maxW="300.px"
         m="auto"
       >
-        <IconProject estado={project.estado} />
+        <IconProject project={project} />
       </Flex>
       <Flex
         color="gray.700"
@@ -152,7 +151,7 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
         <Text py="30px" fontWeight="medium" fontSize="2xl">
           {project.titulo}
         </Text>
-        <Text paddingBottom="20px">{project.description}</Text>
+        <Text paddingBottom="20px">{project.descricao}</Text>
       </Flex>
       <Flex
         color="gray.700"
@@ -162,12 +161,13 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
         maxW="300.px"
         m="auto"
       >
-        <TagsStack tags={project.tags} />
-        <ResearcherStack pesquisadores={project.pesquisadores} />
-        <AfiliacoesStack afiliacoes={project.afiliacoes} />
+        <TagsStack tags={project.tag} />
+        <ResearcherStack pesquisadores={project.pesquisadoresIds} />
       </Flex>
     </Box>
   );
 }
+
+// <AfiliacoesStack afiliacoes={project.afiliacoes} />
 
 export default ProjectItem;

@@ -14,7 +14,7 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
-  VStack
+  VStack,
 } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import * as icons from 'react-icons/fi';
@@ -37,16 +37,16 @@ const SIDE_ITENS: Array<SideItem> = [
   {
     icon: icons.FiHome,
     name: 'Home',
-    href: '/',
+    href: '/admin',
   },
   {
     icon: icons.FiFileText,
     name: 'Questionários',
     sub: [
-      { name: 'Listar', href: '/' },
+      { name: 'Listar', href: '/admin' },
       {
         name: 'Adicionar',
-        href: '/',
+        href: '/admin',
       },
     ],
   },
@@ -54,10 +54,10 @@ const SIDE_ITENS: Array<SideItem> = [
     icon: icons.FiUser,
     name: 'Pesquisadores',
     sub: [
-      { name: 'Listar', href: '/' },
+      { name: 'Listar', href: '/admin' },
       {
         name: 'Adicionar',
-        href: '/',
+        href: '/admin',
       },
     ],
   },
@@ -65,10 +65,10 @@ const SIDE_ITENS: Array<SideItem> = [
     icon: icons.FiUser,
     name: 'Linhas de Pesquisa',
     sub: [
-      { name: 'Listar', href: '/' },
+      { name: 'Listar', href: '/admin' },
       {
         name: 'Adicionar',
-        href: '/',
+        href: '/admin',
       },
     ],
   },
@@ -91,8 +91,7 @@ function NavItem(props: NavProps): JSX.Element {
         style={{ textDecoration: 'none' }}
         _focus={{ boxShadow: 'none' }}
       >
-        <Box
-          alignContent="space-around"
+        <Flex
           p="4"
           mx="4"
           borderRadius="lg"
@@ -102,18 +101,14 @@ function NavItem(props: NavProps): JSX.Element {
             bg: 'gray.100',
           }}
           backgroundColor={isOpen ? 'gray.100' : 'white'}
+          align="center"
+          justify="space-between"
         >
-          {icon && <Icon mr="4" fontSize="16" as={icon} />}
-          {name}
-          {sub && (
-            <Icon
-              alignSelf="flex-end"
-              mr="4"
-              fontSize="16"
-              as={icons.FiChevronDown}
-            />
-          )}
-        </Box>
+          <Flex>
+            {icon && <Icon mr="4" fontSize="16" as={icon} />}
+            {name}
+          </Flex>
+        </Flex>
       </Link>
       {sub && (
         <Collapse in={isOpen} animateOpacity>
@@ -261,6 +256,7 @@ export default function SidebarWithHeader({
       minH="100vh"
       bg={useColorModeValue('gray.100', 'gray.900')}
       boxShadow="2xl"
+      w="full"
     >
       <Box>
         <SidebarContent />
