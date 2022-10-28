@@ -159,15 +159,15 @@ export default function EditaProjetos(): JSX.Element {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are you sure? You can't undo this action afterwards.
+            Tem certeza que deseja excluir esse projeto? Você não pode desfazer essa ação depois.
             </AlertDialogBody>
 
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>
-                Cancel
+                Cancelar
               </Button>
               <Button colorScheme='red' onClick={onClose} ml={3}>
-                Delete
+                Excluir
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
