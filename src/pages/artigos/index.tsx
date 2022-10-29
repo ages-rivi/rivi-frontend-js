@@ -1,9 +1,9 @@
-import { articles as mockArticles } from '@api/mock/articles';
 import { Flex, Text } from '@chakra-ui/react';
 import ArticleGrid from '@components/ArticleGrid';
 import Filter from '@components/Filter';
 import SearchInput from '@components/SearchInput';
 import { Article } from '@interfaces/Article';
+import axios from 'axios';
 import { useState } from 'react';
 
 export default function Artigos({
@@ -33,9 +33,13 @@ export default function Artigos({
 }
 
 export async function getStaticProps() {
+  const { data } = await axios.get(
+    'https://rivi-backend-node.onrender.com/api/article'
+  );
+  console.log(data);
   return {
     props: {
-      articles: mockArticles,
+      articles: data,
     },
   };
 }
