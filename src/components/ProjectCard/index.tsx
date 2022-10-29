@@ -1,46 +1,25 @@
 import { CheckCircleIcon, TimeIcon } from '@chakra-ui/icons';
 import { Box, Flex, HStack, Tag, Text } from '@chakra-ui/react';
+import { Projects } from '@interfaces/Projects';
+import { Pesquisadores } from '@interfaces/Reasercher';
 
-export interface Projects {
-  id: string;
-  titulo: string;
-  descricao?: string;
-  estado?: string;
-  tag?: Array<Tags>;
-  pesquisadoresIds?: Array<Pesquisadores>;
-  // afiliacoes?: Array<Afiliacoes>; ainda nao tem no banco
-}
-
-interface Tags {
-  titulo: string;
-  color: string;
-}
-
-interface Pesquisadores {
-  nome: string;
-}
-
-interface Afiliacoes {
-  nome: string;
-}
-
-function TagsStack({ tags }: { tags: Tags[] | undefined }): JSX.Element {
-  if (!tags) {
+function TagsStack({ tag }: { tag: string[] | undefined }): JSX.Element {
+  if (tag.length == 0) {
     return <Box />;
   }
 
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
-      {tags.map((sm) => {
+      {tag.map((sm) => {
         return (
           <Tag
             size="sm"
             variant="solid"
-            colorScheme={sm.color}
+            colorScheme="teal"
             fontSize="sm"
             fontWeight="bold"
           >
-            {sm.titulo}
+            {sm}
           </Tag>
         );
       })}
@@ -62,7 +41,7 @@ function ResearcherStack({
       <Text>
         {pesquisadores
           .map((pesquisador) => {
-            return pesquisador;
+            return pesquisador.nome;
           })
           .join(', ')}
       </Text>
@@ -74,7 +53,7 @@ function ResearcherStack({
 function AfiliacoesStack({
   afiliacoes,
 }: {
-  afiliacoes: Afiliacoes[] | undefined;
+  afiliacoes: Pesquisadores[] | undefined;
 }): JSX.Element {
   if (!afiliacoes) {
     return <Box />;
@@ -91,13 +70,12 @@ function AfiliacoesStack({
   });
   */
 
-  const afiliacoesUnicas = Array.from(new Set(afiliacoes));
   return (
     <HStack direction="row" justify="center" paddingBottom="24px">
       <Text>
-        {afiliacoesUnicas
+        {afiliacoes
           .map((afiliacao) => {
-            return afiliacao;
+            return afiliacao.afiliacao;
           })
           .join(', ')}
       </Text>
@@ -161,13 +139,12 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
         maxW="300.px"
         m="auto"
       >
-        <TagsStack tags={project.tag} />
-        <ResearcherStack pesquisadores={project.pesquisadoresIds} />
+        <TagsStack tag={project.tag} />
+        <ResearcherStack pesquisadores={project.pesquisadores} />
+        <AfiliacoesStack afiliacoes={project.pesquisadores} />
       </Flex>
     </Box>
   );
 }
-
-// <AfiliacoesStack afiliacoes={project.afiliacoes} />
 
 export default ProjectItem;
