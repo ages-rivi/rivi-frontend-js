@@ -123,6 +123,7 @@ function ProjectItem({ project }: { project: Projects }): JSX.Element {
       borderBottom={1}
       p="12px"
       width="360px"
+      height="500px"
       borderStyle="solid"
       borderColor="gray.100"
       borderRadius="20"
