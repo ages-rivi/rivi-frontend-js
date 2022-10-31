@@ -1,3 +1,4 @@
+import { members } from '@api/mock/members';
 import {
   Button,
   Flex,
@@ -8,7 +9,7 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react';
-import ProjectCard from '@components/ProjectCard';
+import MemberCard from '@components/Members/MemberCard';
 import { useState } from 'react';
 
 export default function EditaProjetos(): JSX.Element {
@@ -81,15 +82,46 @@ export default function EditaProjetos(): JSX.Element {
                   onChange={onChange}
                 />
               </FormControl>
-              <FormControl>
-                <FormLabel>Facebook</FormLabel>
+              <div className="socialmedia">
+                <FormLabel width="150px">Facebook</FormLabel>
                 <Input
-                  class="socialmedia"
-                  name="afiliacoes"
+                  name="facebook"
                   placeholder="Ex: link"
                   onChange={onChangeTmp}
                 />
-              </FormControl>
+              </div>
+              <div className="socialmedia">
+                <FormLabel>Linkedin</FormLabel>
+                <Input
+                  name="linkedin"
+                  placeholder="Ex: link"
+                  onChange={onChangeTmp}
+                />
+              </div>
+              <div className="socialmedia">
+                <FormLabel>WhatsApp</FormLabel>
+                <Input
+                  name="whatsapp"
+                  placeholder="Ex: link"
+                  onChange={onChangeTmp}
+                />
+              </div>
+              <div className="socialmedia">
+                <FormLabel>Lattes</FormLabel>
+                <Input
+                  name="lattes"
+                  placeholder="Ex: link"
+                  onChange={onChangeTmp}
+                />
+              </div>
+              <div className="socialmedia">
+                <FormLabel>Email</FormLabel>
+                <Input
+                  name="email"
+                  placeholder="Ex: link"
+                  onChange={onChangeTmp}
+                />
+              </div>
               {/*  */}
               <Flex
                 direction={{ base: 'column', md: 'row' }}
@@ -114,7 +146,7 @@ export default function EditaProjetos(): JSX.Element {
               </Flex>
             </Flex>
           </form>
-          <ProjectCard project={emptyData} />
+          <MemberCard key={members[1].id} member={members[1]} />
         </Flex>
       </Flex>
     </Flex>
