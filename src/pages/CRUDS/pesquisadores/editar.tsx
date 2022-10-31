@@ -43,112 +43,114 @@ export default function EditaProjetos(): JSX.Element {
   };
 
   return (
-    <Flex justify="center" direction="column" p="5">
-      <Flex
-        justify="center"
-        direction="column"
-        maxW="1330px"
-        w="full"
-        margin="auto"
-        gap="3"
-      >
-        <Text textAlign="center" fontWeight="medium" fontSize="3xl">
-          Novo Pesquisador
-        </Text>
-        <Flex justify="center" direction="row" gap="3">
-          <form onSubmit={handleSubmit}>
-            <Flex direction="column" p={4} gap="3">
-              <FormControl>
-                <FormLabel>Nome</FormLabel>
-                <Input
-                  name="nome"
-                  placeholder="Ex: John Doe"
-                  onChange={onChange}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Tags</FormLabel>
-                <Select
-                  name="tags"
-                  placeholder="Ex: autocompaixão"
-                  onChange={onChangeTmp}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Descrição</FormLabel>
-                <Textarea
-                  name="descricao"
-                  placeholder="Ex: Descrição do projeto"
-                  onChange={onChange}
-                />
-              </FormControl>
-              <div className="socialmedia">
-                <FormLabel width="150px">Facebook</FormLabel>
-                <Input
-                  name="facebook"
-                  placeholder="Ex: link"
-                  onChange={onChangeTmp}
-                />
-              </div>
-              <div className="socialmedia">
-                <FormLabel>Linkedin</FormLabel>
-                <Input
-                  name="linkedin"
-                  placeholder="Ex: link"
-                  onChange={onChangeTmp}
-                />
-              </div>
-              <div className="socialmedia">
-                <FormLabel>WhatsApp</FormLabel>
-                <Input
-                  name="whatsapp"
-                  placeholder="Ex: link"
-                  onChange={onChangeTmp}
-                />
-              </div>
-              <div className="socialmedia">
-                <FormLabel>Lattes</FormLabel>
-                <Input
-                  name="lattes"
-                  placeholder="Ex: link"
-                  onChange={onChangeTmp}
-                />
-              </div>
-              <div className="socialmedia">
-                <FormLabel>Email</FormLabel>
-                <Input
-                  name="email"
-                  placeholder="Ex: link"
-                  onChange={onChangeTmp}
-                />
-              </div>
-              {/*  */}
-              <Flex
-                direction={{ base: 'column', md: 'row' }}
-                mt="14"
-                gap={{ base: '2', md: '6' }}
-                w={{ base: 'full', md: 'sm' }}
-              >
-                <Button
-                  colorScheme="teal"
-                  w={{ base: 'full', md: '' }}
-                  type="submit"
+    <Flex justify="center" direction="row" p="5">
+      <div>
+        <Flex
+          justify="center"
+          direction="column"
+          maxW="1330px"
+          w="full"
+          margin="auto"
+          gap="3"
+        >
+          <Text textAlign="start" fontWeight="medium" fontSize="3xl">
+            Novo Pesquisador
+          </Text>
+          <Flex justify="center" direction="row" gap="3">
+            <form onSubmit={handleSubmit}>
+              <Flex direction="column" p={4} gap="3">
+                <FormControl>
+                  <FormLabel>Nome</FormLabel>
+                  <Input
+                    name="nome"
+                    placeholder="Ex: John Doe"
+                    onChange={onChange}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Tags</FormLabel>
+                  <Select
+                    name="tags"
+                    placeholder="Ex: autocompaixão"
+                    onChange={onChangeTmp}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Descrição</FormLabel>
+                  <Textarea
+                    name="descricao"
+                    placeholder="Ex: Descrição do projeto"
+                    onChange={onChange}
+                  />
+                </FormControl>
+                <div className="socialmedia">
+                  <FormLabel width="150px">Facebook</FormLabel>
+                  <Input
+                    name="facebook"
+                    placeholder="Ex: link"
+                    onChange={onChangeTmp}
+                  />
+                </div>
+                <div className="socialmedia">
+                  <FormLabel>Linkedin</FormLabel>
+                  <Input
+                    name="linkedin"
+                    placeholder="Ex: link"
+                    onChange={onChangeTmp}
+                  />
+                </div>
+                <div className="socialmedia">
+                  <FormLabel>WhatsApp</FormLabel>
+                  <Input
+                    name="whatsapp"
+                    placeholder="Ex: link"
+                    onChange={onChangeTmp}
+                  />
+                </div>
+                <div className="socialmedia">
+                  <FormLabel>Lattes</FormLabel>
+                  <Input
+                    name="lattes"
+                    placeholder="Ex: link"
+                    onChange={onChangeTmp}
+                  />
+                </div>
+                <div className="socialmedia">
+                  <FormLabel>Email</FormLabel>
+                  <Input
+                    name="email"
+                    placeholder="Ex: link"
+                    onChange={onChangeTmp}
+                  />
+                </div>
+                {/*  */}
+                <Flex
+                  direction={{ base: 'column', md: 'row' }}
+                  mt="14"
+                  gap={{ base: '2', md: '6' }}
+                  w={{ base: 'full', md: 'sm' }}
                 >
-                  Salvar
-                </Button>
-                <Button
-                  colorScheme="gray"
-                  variant="outline"
-                  w={{ base: 'full', md: '' }}
-                >
-                  Cancelar
-                </Button>
+                  <Button
+                    colorScheme="teal"
+                    w={{ base: 'full', md: '' }}
+                    type="submit"
+                  >
+                    Salvar
+                  </Button>
+                  <Button
+                    colorScheme="gray"
+                    variant="outline"
+                    w={{ base: 'full', md: '' }}
+                  >
+                    Cancelar
+                  </Button>
+                </Flex>
               </Flex>
-            </Flex>
-          </form>
-          <MemberCard key={members[1].id} member={members[1]} />
+            </form>
+          </Flex>
         </Flex>
-      </Flex>
+      </div>
+      <MemberCard key={members[1].id} member={members[1]} />
     </Flex>
   );
 }
