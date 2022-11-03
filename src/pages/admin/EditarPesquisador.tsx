@@ -43,7 +43,7 @@ export default function EditaProjetos(): JSX.Element {
   };
 
   return (
-    <Flex justify="center" direction="row" p="5" bg="gray.50">
+    <Flex justify="center" direction="row" align="center" p="5" bg="gray.50">
       <Flex borderRadius="10px" bg="white">
         <Flex
           align="start"
@@ -52,7 +52,6 @@ export default function EditaProjetos(): JSX.Element {
           direction="column"
           maxW="1330px"
           w="1080px"
-          h="840px"
           margin="auto"
           gap="3"
         >
