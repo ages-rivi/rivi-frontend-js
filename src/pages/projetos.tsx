@@ -6,10 +6,11 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import ProjectItem from '@components/ProjectCard';
-import getAllProjects from '@lib/projetos';
+import { Projects } from '@interfaces/Projects';
+import projetosApi from '@lib/projetos';
 import { GetStaticProps } from 'next';
 
 // No banco nao tem afiliacoes e precisa por
@@ -33,7 +34,8 @@ afiliacoes: [
   ],
  */
 
-function Projetos({ projects }: any): JSX.Element {
+function Projetos({ projects }: { projects: Projects }): JSX.Element {
+  // console.log('ZZZ', projects);
   return (
     <Flex direction="column" p="5">
       <Flex direction="column" maxW="1330px" w="full" margin="auto" gap="3">
@@ -93,8 +95,13 @@ function Projetos({ projects }: any): JSX.Element {
               wrap="wrap"
             >
               {projects
+<<<<<<< HEAD
                 .filter((project: any) => {
                   return project.estado === 'em andamendto';
+=======
+                .filter((project) => {
+                  return project.estado === 'em andamento';
+>>>>>>> e0ec18f2edd9528462793b81662f1e67a126f8c2
                 })
                 .map((project: any) => {
                   return <ProjectItem project={project} />;
@@ -125,9 +132,8 @@ function Projetos({ projects }: any): JSX.Element {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projects = await getAllProjects();
+  const projects: Array<Projects> = await projetosApi.getAllProjects();
   return { props: { projects } };
-  // const nova chamada
 };
 
 export default Projetos;

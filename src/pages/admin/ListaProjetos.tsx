@@ -4,6 +4,7 @@ import {
   Divider,
   Flex,
   Input,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -11,62 +12,9 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-
-export const columns = [
-  {
-    name: 'Título',
-    selector: 'titulo',
-    sortable: true,
-  },
-  {
-    name: 'Pesquisador',
-    selector: 'pesquisador',
-    sortable: true,
-  },
-  {
-    name: 'Tags',
-    selector: 'tags',
-    sortable: true,
-    cell: (d: { tags: string[] }): JSX.Element => {
-      return <span>{d.tags.join(', ')}</span>;
-    },
-  },
-  {
-    name: 'Afiliações',
-    selector: 'afiliacoes',
-    sortable: true,
-  },
-  {
-    key: 'action',
-    text: 'Action',
-    className: 'action',
-    width: 100,
-    align: 'left',
-    sortable: false,
-    cell: () => {
-      return (
-        <Menu>
-          <MenuButton
-            // eslint-disable-next-line
-            // @ts-ignore
-            size="lg"
-          >
-            <Text fontSize="2xl">...</Text>
-          </MenuButton>
-          <MenuList minWidth="100px">
-            <MenuItem>Selecionar</MenuItem>
-            <MenuItem>Editar</MenuItem>
-            <MenuItem>Deletar</MenuItem>
-            <MenuItem>Visualizar</MenuItem>
-            <MenuItem>Arquivar</MenuItem>
-          </MenuList>
-        </Menu>
-      );
-    },
-  },
-];
 
 export const data = [
   {
@@ -124,12 +72,67 @@ export const data = [
 ];
 
 export default function ListaProjetos(): React.ReactNode {
+  const router = useRouter();
   const [isRenddered, setIsRended] = useState(false);
   const [dadoFiltrado, setDadoFiltrado] = useState(data);
 
   useEffect(() => {
     setIsRended(true);
   }, []);
+
+  const columns = [
+    {
+      name: 'Título',
+      selector: 'titulo',
+      sortable: true,
+    },
+    {
+      name: 'Pesquisador',
+      selector: 'pesquisador',
+      sortable: true,
+    },
+    {
+      name: 'Tags',
+      selector: 'tags',
+      sortable: true,
+      cell: (d: { tags: string[] }): JSX.Element => {
+        return <span>{d.tags.join(', ')}</span>;
+      },
+    },
+    {
+      name: 'Afiliações',
+      selector: 'afiliacoes',
+      sortable: true,
+    },
+    {
+      key: 'action',
+      text: 'Action',
+      className: 'action',
+      width: 100,
+      align: 'left',
+      sortable: false,
+      cell: (row, index, column, id) => {
+        return (
+          <Menu>
+            <MenuButton size="lg">
+              <Text fontSize="2xl">...</Text>
+            </MenuButton>
+            <MenuList minWidth="100px">
+              <MenuItem
+                onClick={() => {
+                  console.log(row);
+                  router.push(`http://localhost:3000/CRUDS/EditaProjetos`);
+                }}
+              >
+                Editar/Visualizar
+              </MenuItem>
+              <MenuItem>Excluir</MenuItem>
+            </MenuList>
+          </Menu>
+        );
+      },
+    },
+  ];
 
   // replace null with loading spinner
   if (!isRenddered)
@@ -212,9 +215,11 @@ export default function ListaProjetos(): React.ReactNode {
         </Box>
       </Flex>
       <Flex justify="center">
-        <Button colorScheme="teal" w={{ base: '500', md: '' }}>
-          Novo Projeto
-        </Button>
+        <Link href="http://localhost:3000/CRUDS/CriaProjetos">
+          <Button colorScheme="teal" w={{ base: '500', md: '' }}>
+            Novo Projeto
+          </Button>
+        </Link>
       </Flex>
     </Flex>
   );

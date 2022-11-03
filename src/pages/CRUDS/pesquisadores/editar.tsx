@@ -43,13 +43,16 @@ export default function EditaProjetos(): JSX.Element {
   };
 
   return (
-    <Flex justify="center" direction="row" p="5">
-      <div>
+    <Flex justify="center" direction="row" p="5" bg="gray.50">
+      <Flex borderRadius="10px" bg="white">
         <Flex
+          align="start"
+          padding={4}
           justify="center"
           direction="column"
           maxW="1330px"
-          w="full"
+          w="1080px"
+          h="840px"
           margin="auto"
           gap="3"
         >
@@ -149,8 +152,10 @@ export default function EditaProjetos(): JSX.Element {
             </form>
           </Flex>
         </Flex>
-      </div>
-      <MemberCard key={members[1].id} member={members[1]} />
+      </Flex>
+      <Flex h="559px" p="5" align="center">
+        <MemberCard key={members[1].id} member={members[1]} />
+      </Flex>
     </Flex>
   );
 }

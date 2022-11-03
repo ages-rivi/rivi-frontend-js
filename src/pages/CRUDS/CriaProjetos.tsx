@@ -24,7 +24,6 @@ export default function EditaProjetos(): JSX.Element {
   const router = useRouter()
   const { query: { row }  } = router
 
-
   console.log("", row)
   const [emptyData, setEmptyData] = useState({
     titulo: '',
@@ -67,7 +66,7 @@ export default function EditaProjetos(): JSX.Element {
         gap="3"
       >
         <Text textAlign="center" fontWeight="medium" fontSize="3xl">
-          Projeto dos Alunos
+          Novo Projeto
         </Text>
         <Flex justify="center" direction="row" gap="3">
           <form onSubmit={handleSubmit}>
@@ -77,8 +76,6 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="titulo"
                   placeholder="Ex: Relações Interpessoais"
-                  // eslint-disable-next-line
-                  // @ts-ignore
                   onChange={onChange}
                 />
               </FormControl>
@@ -87,8 +84,6 @@ export default function EditaProjetos(): JSX.Element {
                 <Textarea
                   name="descricao"
                   placeholder="Ex: Descrição do projeto"
-                  // eslint-disable-next-line
-                  // @ts-ignore
                   onChange={onChange}
                 />
               </FormControl>
@@ -97,8 +92,6 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="tags"
                   placeholder="Ex: autocompaixão"
-                  // eslint-disable-next-line
-                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -107,8 +100,6 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="pesquisadores"
                   placeholder="Ex: John Doe"
-                  // eslint-disable-next-line
-                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -117,8 +108,6 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="afiliacoes"
                   placeholder="PUCRS"
-                  // eslint-disable-next-line
-                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -141,52 +130,24 @@ export default function EditaProjetos(): JSX.Element {
                 >
                   Cancelar
                 </Button>
-                <Button 
+                {row && <Button
                 onClick={onOpen}
                   colorScheme="teal"
                   w={{ base: 'full', md: '' }}
                   type="submit"
                 >
                   Excluir
-                </Button>
-                <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-              Delete Customer
-            </AlertDialogHeader>
-
-            <AlertDialogBody>
-            Tem certeza que deseja excluir esse projeto? Você não pode desfazer essa ação depois.
-            </AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancelar
-              </Button>
-              <Button colorScheme='red' onClick={onClose} ml={3}>
-                Excluir
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+                </Button>}
                 
               </Flex>
             </Flex>
           </form>
-          <ProjectCard
-            // eslint-disable-next-line
-            // @ts-ignore
-            project={emptyData}
-          />
+          <ProjectCard project={emptyData} />
         </Flex>
       </Flex>
     </Flex>
+
+    
     </>
   );
 }
