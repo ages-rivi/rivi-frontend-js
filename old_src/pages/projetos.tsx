@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import {
-    Flex,
-    Tab,
-    TabList,
-    TabPanel,
-    TabPanels,
-    Tabs,
-    Text
+  Flex,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text
 } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
 import ProjectItem from 'old_src/components/ProjectCard';
@@ -94,10 +95,15 @@ function Projetos({ projects }: { projects: Projects }): JSX.Element {
               wrap="wrap"
             >
               {projects
+<<<<<<< HEAD
+                .filter((project: any) => {
+                  return project.estado === 'em andamendto';
+=======
                 .filter((project) => {
                   return project.estado === 'em andamento';
+>>>>>>> e0ec18f2edd9528462793b81662f1e67a126f8c2
                 })
-                .map((project) => {
+                .map((project: any) => {
                   return <ProjectItem project={project} />;
                 })}
             </Flex>
@@ -111,10 +117,10 @@ function Projetos({ projects }: { projects: Projects }): JSX.Element {
               wrap="wrap"
             >
               {projects
-                .filter((project) => {
+                .filter((project: any) => {
                   return project.estado === 'concluído';
                 })
-                .map((project) => {
+                .map((project: any) => {
                   return <ProjectItem project={project} />;
                 })}
             </Flex>

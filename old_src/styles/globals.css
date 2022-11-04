@@ -15,6 +15,10 @@ a {
   box-sizing: border-box;
 }
 
+.dataTable {
+  overflow: hidden !important;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -23,4 +27,14 @@ a {
     color: white;
     background: black;
   }
+}
+
+.socialmedia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialmedia > label {
+  width: 150px;
 }

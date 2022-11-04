@@ -1,26 +1,32 @@
 import {
-    AlertDialog,
-    AlertDialogBody, AlertDialogContent, AlertDialogFooter,
-    AlertDialogHeader, AlertDialogOverlay, Button,
-    Flex,
-    FormControl,
-    FormLabel,
-    Input,
-    Text,
-    Textarea, useDisclosure
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Text,
+  Textarea,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import ProjectCard from 'old_src/components/ProjectCard';
 import { useRef, useState } from 'react';
 
 export default function EditaProjetos(): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = useRef()
-  const router = useRouter()
-  const { query: { row }  } = router
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
+  const router = useRouter();
+  const {
+    query: { row },
+  } = router;
 
-
-  console.log("", row)
+  console.log('', row);
   const [emptyData, setEmptyData] = useState({
     titulo: '',
     descricao: '',
@@ -29,7 +35,7 @@ export default function EditaProjetos(): JSX.Element {
     afiliacoes: '',
     estado: '',
   });
-   
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log(emptyData);
@@ -49,9 +55,8 @@ export default function EditaProjetos(): JSX.Element {
       [name]: value.split(','),
     });
   };
-  
+
   return (
-    <>
     <Flex justify="center" direction="column" p="5">
       <Flex
         justify="center"
@@ -72,6 +77,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="titulo"
                   placeholder="Ex: Relações Interpessoais"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChange}
                 />
               </FormControl>
@@ -80,6 +87,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Textarea
                   name="descricao"
                   placeholder="Ex: Descrição do projeto"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChange}
                 />
               </FormControl>
@@ -88,6 +97,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="tags"
                   placeholder="Ex: autocompaixão"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -96,6 +107,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="pesquisadores"
                   placeholder="Ex: John Doe"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -104,6 +117,8 @@ export default function EditaProjetos(): JSX.Element {
                 <Input
                   name="afiliacoes"
                   placeholder="PUCRS"
+                  // eslint-disable-next-line
+                  // @ts-ignore
                   onChange={onChangeTmp}
                 />
               </FormControl>
@@ -120,14 +135,11 @@ export default function EditaProjetos(): JSX.Element {
                 >
                   Salvar
                 </Button>
-                <Button 
-                  colorScheme="teal"
-                  w={{ base: 'full', md: '' }}
-                >
+                <Button colorScheme="teal" w={{ base: 'full', md: '' }}>
                   Cancelar
                 </Button>
-                <Button 
-                onClick={onOpen}
+                <Button
+                  onClick={onOpen}
                   colorScheme="teal"
                   w={{ base: 'full', md: '' }}
                   type="submit"
@@ -135,39 +147,42 @@ export default function EditaProjetos(): JSX.Element {
                   Excluir
                 </Button>
                 <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-              Delete Customer
-            </AlertDialogHeader>
+                  isOpen={isOpen}
+                  leastDestructiveRef={cancelRef}
+                  onClose={onClose}
+                >
+                  <AlertDialogOverlay>
+                    <AlertDialogContent>
+                      <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                        Delete Customer
+                      </AlertDialogHeader>
 
-            <AlertDialogBody>
-            Tem certeza que deseja excluir esse projeto? Você não pode desfazer essa ação depois.
-            </AlertDialogBody>
+                      <AlertDialogBody>
+                        Tem certeza que deseja excluir esse projeto? Você não
+                        pode desfazer essa ação depois.
+                      </AlertDialogBody>
 
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancelar
-              </Button>
-              <Button colorScheme='red' onClick={onClose} ml={3}>
-                Excluir
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
-                
+                      <AlertDialogFooter>
+                        <Button ref={cancelRef} onClick={onClose}>
+                          Cancelar
+                        </Button>
+                        <Button colorScheme="red" onClick={onClose} ml={3}>
+                          Excluir
+                        </Button>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialogOverlay>
+                </AlertDialog>
               </Flex>
             </Flex>
           </form>
-          <ProjectCard project={emptyData} />
+          <ProjectCard
+            // eslint-disable-next-line
+            // @ts-ignore
+            project={emptyData}
+          />
         </Flex>
       </Flex>
     </Flex>
-    </>
   );
 }

@@ -3,16 +3,18 @@ import {
   Button,
   Divider,
   Flex,
-  Input, Link, Menu,
+  Input,
+  Link,
+  Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Spinner,
-  Text
+  Text,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-import { useRouter } from 'next/router'
 
 export const data = [
   {
@@ -70,7 +72,7 @@ export const data = [
 ];
 
 export default function ListaProjetos(): React.ReactNode {
-  const router = useRouter()
+  const router = useRouter();
   const [isRenddered, setIsRended] = useState(false);
   const [dadoFiltrado, setDadoFiltrado] = useState(data);
 
@@ -116,10 +118,14 @@ export default function ListaProjetos(): React.ReactNode {
               <Text fontSize="2xl">...</Text>
             </MenuButton>
             <MenuList minWidth="100px">
-              <MenuItem onClick={() => {
-                console.log(row)
-                router.push(`http://localhost:3000/CRUDS/EditaProjetos`);
-              }}>Editar/Visualizar</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  console.log(row);
+                  router.push(`http://localhost:3000/CRUDS/EditaProjetos`);
+                }}
+              >
+                Editar/Visualizar
+              </MenuItem>
               <MenuItem>Excluir</MenuItem>
             </MenuList>
           </Menu>
@@ -187,6 +193,8 @@ export default function ListaProjetos(): React.ReactNode {
             <Input
               name="titulo"
               placeholder="🔎  Digite o título que deseja buscar..."
+              // eslint-disable-next-line
+              // @ts-ignore
               onChange={onChange}
             />
           </Flex>
@@ -207,10 +215,10 @@ export default function ListaProjetos(): React.ReactNode {
         </Box>
       </Flex>
       <Flex justify="center">
-        <Link href= 'http://localhost:3000/CRUDS/CriaProjetos' >
-        <Button colorScheme="teal" w={{ base: '500', md: '' }} >
-          Novo Projeto
-        </Button>
+        <Link href="http://localhost:3000/CRUDS/CriaProjetos">
+          <Button colorScheme="teal" w={{ base: '500', md: '' }}>
+            Novo Projeto
+          </Button>
         </Link>
       </Flex>
     </Flex>
