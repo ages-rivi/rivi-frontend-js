@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Inicio",
+    "path": "/"
+  },
+  {
+    "name": "Quem Somos",
+    "path": "quem-somos"
+  },
+  {
+    "name": "Projetos",
+    "path": "projetos"
+  },
+  {
+    "name": "Artigos",
+    "path": "/artigos"
+  },
+  {
+    "name": "Questionários",
+    "path": "/questionário"
+  },
+  {
+    "name": "Contato",
+    "path": "/contato"
+  },
+  {
+    "name": "Entrar",
+    "path": "/entrar",
+    "isAuth": true
+  },
+  {
+    "name": "Registrar",
+    "path": "/registrar",
+    "isAuth": true
+  }
+]
