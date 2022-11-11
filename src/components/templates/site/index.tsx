@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import Footer from '../../@core/ui/molecules/containers/Footer';
-import Header from '../../@core/ui/molecules/containers/Header';
+import { Footer, Header } from '../../@core/ui';
 
 interface SiteTemplateProps {
   children: React.ReactNode;
