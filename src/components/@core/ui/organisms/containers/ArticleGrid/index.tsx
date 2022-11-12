@@ -1,3 +1,5 @@
+// TO DO: Adicionar nova propriedade DOI no Grid
+
 import { useRouter } from 'next/router';
 import ArticleGridView from '../../views/ArticleGrid';
 

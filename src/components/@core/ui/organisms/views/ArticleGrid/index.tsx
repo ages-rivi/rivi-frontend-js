@@ -1,3 +1,5 @@
+// TO DO: Adicionar nova propriedade DOI no Grid
+
 import { Flex, Grid, GridItem } from '@chakra-ui/react';
 import ArticleCard from '../../../molecules/views/Cards/ArticleCard';
 
