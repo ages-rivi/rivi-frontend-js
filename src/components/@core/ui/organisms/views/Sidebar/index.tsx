@@ -1,4 +1,4 @@
-import { Box, Flex, FlexProps, Icon } from '@chakra-ui/react';
+import { Box, Flex, FlexProps, Icon, VStack } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { ReactNode } from 'react';
 import { IconType } from 'react-icons';
@@ -14,7 +14,11 @@ interface NavItemProps extends FlexProps {
 function NavItem({ icon, name, href, isActive }: NavItemProps) {
   return (
     <NextLink href={href} passHref>
-      <Box style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+      <Box
+        style={{ textDecoration: 'none' }}
+        _focus={{ boxShadow: 'none' }}
+        w="full"
+      >
         <Flex
           align="center"
           p="4"
@@ -24,21 +28,13 @@ function NavItem({ icon, name, href, isActive }: NavItemProps) {
           cursor="pointer"
           bgColor={isActive ? 'teal.600' : 'transparent'}
           color={isActive ? 'white' : 'black'}
+          border={isActive ? '1px solid #2c7a7b' : '1px solid white'}
           _hover={{
-            bg: 'teal.500',
-            color: 'white',
+            border: '1px',
+            borderColor: 'teal.600',
           }}
         >
-          {icon && (
-            <Icon
-              mr="4"
-              fontSize="16"
-              _groupHover={{
-                color: 'white',
-              }}
-              as={icon}
-            />
-          )}
+          {icon && <Icon mr="4" fontSize="16" as={icon} />}
           {name}
         </Flex>
       </Box>
@@ -76,18 +72,20 @@ function SidebarContent({
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Logo href={base_href} />
       </Flex>
-      {links.map(({ name, icon, href }) => {
-        const isActive = active_href === href;
-        return (
-          <NavItem
-            isActive={isActive}
-            key={name}
-            icon={icon}
-            name={name}
-            href={href}
-          />
-        );
-      })}
+      <VStack w="full">
+        {links.map(({ name, icon, href }) => {
+          const isActive = active_href === href;
+          return (
+            <NavItem
+              isActive={isActive}
+              key={name}
+              icon={icon}
+              name={name}
+              href={href}
+            />
+          );
+        })}
+      </VStack>
     </Box>
   );
 }

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { IconType } from 'react-icons';
-import { FiHome } from 'react-icons/fi';
+import { FiHome, FiPaperclip } from 'react-icons/fi';
 import SideBarView from '../../views/Sidebar';
 
 interface SidebarProps {
@@ -13,6 +13,7 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome, href: '/admin' },
+  { name: 'Projetos', icon: FiPaperclip, href: '/admin/projetos' },
 ];
 
 export default function Sidebar({ children }: SidebarProps) {
