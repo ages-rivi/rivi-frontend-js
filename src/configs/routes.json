@@ -9,7 +9,7 @@
   },
   {
     "name": "Projetos",
-    "path": "projetos"
+    "path": "/projetos"
   },
   {
     "name": "Artigos",
@@ -25,7 +25,7 @@
   },
   {
     "name": "Entrar",
-    "path": "/entrar",
+    "path": "/admin/login",
     "isAuth": true
   },
   {
