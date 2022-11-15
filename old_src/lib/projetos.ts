@@ -6,6 +6,13 @@ async function getAllProjects() {
   return projects;
 }
 
+async function getProjectById(id: String) {
+  const res = await api.get('/projetos/' + id);
+  const projects = await res.data;
+  return projects;
+}
+
 export default {
   getAllProjects,
+  getProjectById,
 };

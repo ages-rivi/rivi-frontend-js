@@ -1,6 +1,7 @@
 // TO DO: Adicionar nova propriedade DOI no Grid
 
 import { Box, Flex, Text } from '@chakra-ui/react';
+import { GetStaticProps } from 'next';
 import PesquisadorCard from '../../../molecules/views/Cards/PesquisadorCard';
 
 interface Social {
@@ -56,3 +57,8 @@ export default function PesquisadorCardCarrossel({
     </Flex>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const projetos: Array<Pesquisador> = await projetosApi.getAllProjects();
+  return { props: { projects: projetos } };
+};
