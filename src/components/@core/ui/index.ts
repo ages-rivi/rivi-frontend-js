@@ -1,6 +1,6 @@
 import { Logo, SearchInput, SocialButton, Tag } from './atoms';
 import { ArticleCard, FilterArticles, TagStack } from './molecules';
-import { ArticleGrid, Footer, Header, Login } from './organisms';
+import { ArticleGrid, Footer, Header, Login, Sidebar } from './organisms';
 
 export {
   Logo,
@@ -14,4 +14,5 @@ export {
   FilterArticles,
   Tag,
   TagStack,
+  Sidebar,
 };
