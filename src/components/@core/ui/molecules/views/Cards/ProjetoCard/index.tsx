@@ -16,7 +16,7 @@ interface ProjectCardProps {
   afiliacao: string;
 }
 
-export default function ProjectItem({
+export default function ProjetoCard({
   project,
 }: {
   project: ProjectCardProps;
