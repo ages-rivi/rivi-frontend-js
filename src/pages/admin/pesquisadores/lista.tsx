@@ -145,7 +145,7 @@ export default function ListaProjetos({ data }: any): React.ReactNode {
         </Box>
       </Flex>
       <Flex justify="center">
-        <Link href="/admin/pesquisadores/edita">
+        <Link href="/admin/pesquisadores/editar">
           <Button colorScheme="teal" w={{ base: '500', md: '' }}>
             Novo Pesquisador
           </Button>

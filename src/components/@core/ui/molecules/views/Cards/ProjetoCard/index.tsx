@@ -1,52 +1,73 @@
 // Copiada da Molécula ArticleCard
-// TO DO: Trazer informações do arquivo do ProjectCard legado
+// TO DO: Trazer informações do arquivo do MemberCard legado
 
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import limit from '../../../../../../../utils/limit';
+import { Box, Flex, Text } from '@chakra-ui/react';
+import TagStack from '../../../containers/TagStack';
+import AfiliacoesStack from '../../AfiliacoesStack';
+import PesquisadorStack from '../../PesquisadorStack';
 
-interface ArticleCardProps {
-  title: string;
-  category: string;
-  description: string;
-  href: string;
+interface ProjectCardProps {
+  id: string;
+  titulo: string;
+  descricao?: string;
+  estado?: string;
+  tag: string[];
+  pesquisadores: string;
+  afiliacao: string;
 }
 
-export default function ArticleCard({
-  title,
-  category,
-  description,
-  href,
-}: ArticleCardProps) {
-  const router = useRouter();
-
-  const navigateToLink = () => {
-    router.push(href);
-  };
-
+export default function ProjectItem({
+  project,
+}: {
+  project: ProjectCardProps;
+}): JSX.Element {
   return (
-    <Flex gap={{ base: 2, md: '6' }} direction={{ base: 'column', md: 'row' }}>
-      <Box w={{ base: 'full', md: '40' }} h="40" bgColor="teal.500" />
-      <Flex direction="column" justify="space-between" p="1">
-        <Flex direction="column" maxW="300px" w="full">
-          <Flex direction="column">
-            <Text fontSize="xl" fontWeight="semibold">
-              {limit(title, 25)}
-            </Text>
-            <Text fontWeight="medium" color="gray.500">
-              {category}
-            </Text>
-          </Flex>
-          <Text mt="2" mb={{ base: 2, md: 0 }}>
-            {limit(description, 60)}
-          </Text>
-        </Flex>
-        <Flex>
-          <Button variant="link" colorScheme="teal" onClick={navigateToLink}>
-            VER MAIS
-          </Button>
-        </Flex>
+    <Box
+      borderBottom={1}
+      p="12px"
+      width="360px"
+      borderStyle="solid"
+      borderColor="gray.100"
+      borderRadius="20"
+      shadow="xl"
+      bg="gray.100"
+    >
+      <Flex
+        color="gray.700"
+        direction="row"
+        justify="left"
+        py="3px"
+        align="right"
+        maxW="300.px"
+        m="auto"
+      >
+        {/* <IconProject project={project} /> */}
       </Flex>
-    </Flex>
+      <Flex
+        color="gray.700"
+        direction="column"
+        py="3px"
+        align="center"
+        maxW="300.px"
+        m="auto"
+      >
+        <Text py="30px" fontWeight="medium" fontSize="2xl">
+          {project.titulo}
+        </Text>
+        <Text paddingBottom="20px">{project.descricao}</Text>
+      </Flex>
+      <Flex
+        color="gray.700"
+        direction="column"
+        py="3px"
+        align="left"
+        maxW="300.px"
+        m="auto"
+      >
+        <TagStack tags={project.tag} />
+        <PesquisadorStack pesquisadores={project.pesquisadores} />
+        <AfiliacoesStack afiliacoes={project.afiliacao} />
+      </Flex>
+    </Box>
   );
 }
