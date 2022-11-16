@@ -12,7 +12,7 @@ interface ArticleCardProps {
   href: string;
 }
 
-export default function ArticleCard({
+export default function ContatoCard({
   title,
   category,
   description,
