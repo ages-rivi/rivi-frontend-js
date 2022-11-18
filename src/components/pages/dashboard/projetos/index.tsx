@@ -16,7 +16,11 @@ interface Pesquisadores {
   afiliacao: string;
 }
 
-export default function Projetos({ projects }: { projects: Projects[] }): JSX.Element {
+interface SiteTemplateProps {
+  children: React.ReactNode;
+}
+
+export default function Projetos({ projects }: { projects: Projects[] }): SiteTemplateProps {
   return (
     <DashboardTemplate>
       <Flex w="full">
