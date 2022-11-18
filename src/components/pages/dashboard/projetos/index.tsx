@@ -17,7 +17,6 @@ interface Pesquisadores {
 }
 
 interface SiteTemplateProps {
-  children: React.ReactNode;
 }
 
 export default function Projetos({ projects }: { projects: Projects[] }): SiteTemplateProps {
