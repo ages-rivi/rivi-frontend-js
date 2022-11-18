@@ -24,7 +24,7 @@ interface Projects {
   titulo: string;
   descricao?: string;
   estado?: string;
-  tag?: Array<string>;
+  tags?: Array<string>;
   pesquisadores?: Array<Pesquisadores>;
 }
 
@@ -44,7 +44,9 @@ export default function EditaProjetos({
   const [emptyData, setEmptyData] = useState({
     titulo: projetos.titulo,
     descricao: projetos.descricao,
-    tags: projetos.tag,
+    tags: projetos.tags?.map((tag) => {
+      return ' ' + tag;
+    }),
     pesquisadores: projetos.pesquisadores
       ?.map((pesquisador) => {
         return pesquisador.nome;
