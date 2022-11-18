@@ -16,12 +16,13 @@ interface Pesquisadores {
   afiliacao: string;
 }
 
-interface SiteTemplateProps {
+interface ProjetoProps {
+  projects: Projects[];
 }
 
-export default function Projetos({ projects }: { projects: Projects[] }): SiteTemplateProps {
+export default function Projetos({ projects }: ProjetoProps) {
   return (
-    <DashboardTemplate>
+    <DashboardTemplate children={undefined}>
       <Flex w="full">
         <ListaProjetos projects={projects} />
       </Flex>
