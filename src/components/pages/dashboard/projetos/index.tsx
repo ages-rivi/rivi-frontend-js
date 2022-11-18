@@ -18,7 +18,7 @@ interface Pesquisadores {
 
 export default function Projetos({ projects }: { projects: Projects[] }) {
   return (
-    <DashboardTemplate>
+    <DashboardTemplate children={undefined}>
       <Flex w="full">
         <ListaProjetos projects={projects} />
       </Flex>
