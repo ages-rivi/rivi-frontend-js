@@ -3,7 +3,6 @@ import {
   Button,
   Divider,
   Flex,
-  Input,
   Menu,
   MenuButton,
   MenuItem,
@@ -47,6 +46,11 @@ export default function ListaProjetos({
   useEffect(() => {
     setIsRended(true);
   }, []);
+
+  const paginationComponentOptions = {
+    selectAllRowsItem: true,
+    selectAllRowsItemText: 'ALL',
+  };
 
   const columns = [
     {
@@ -150,73 +154,72 @@ export default function ListaProjetos({
   };
 
   return (
-    <>
-      <Flex justify="center" direction="column" p="6">
-        <Flex justify="center" direction="row" p="6">
-          <Box
-            maxW="1000px"
-            mx="auto"
-            w="full"
-            border="1px solid gray"
-            borderColor="gray.200"
-            borderRadius="md"
-          >
-            <Flex justify="left" direction="row" p="5">
-              <svg
-                width="45"
-                height="45"
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.5 3.7002C6.5 2.59563 7.39543 1.7002 8.5 1.7002C9.60457 1.7002 10.5 2.59563 10.5 3.7002V5.7002H15.5V10.7002H17.5C18.6046 10.7002 19.5 11.5956 19.5 12.7002C19.5 13.8048 18.6046 14.7002 17.5 14.7002H15.5V19.7002H10.5V17.7002C10.5 16.5956 9.60457 15.7002 8.5 15.7002C7.39543 15.7002 6.5 16.5956 6.5 17.7002V19.7002H1.5V14.7002H3.5C4.60457 14.7002 5.5 13.8048 5.5 12.7002C5.5 11.5956 4.60457 10.7002 3.5 10.7002H1.5V5.7002H6.5V3.7002Z"
-                  stroke="#718096"
-                  strokeWidth="2"
-                />{' '}
-              </svg>
-              <Text p="2"> </Text>
-              <Text
-                textAlign="left"
-                fontWeight="bold"
-                fontSize="md"
-                color="gray.700"
-              >
-                Projetos dos Pesquisadores
-              </Text>
-              <Input
-                name="titulo"
-                placeholder="🔎  Digite o título que deseja buscar..."
-                onChange={onChange}
-              />
-            </Flex>
-            <Divider />
-            <DataTable
-              // eslint-disable-next-line
-              // @ts-ignore
-              columns={columns}
-              data={projectsState}
-              noHeader
-              defaultSortField="id"
-              defaultSortAsc={false}
-              pagination
-              highlightOnHover
-              selectableRows
-              button
+    <Flex justify="center" direction="column" p="6">
+      <Flex justify="center" direction="row" p="6">
+        <Box
+          mx="auto"
+          w="full"
+          border="1px solid gray"
+          borderColor="gray.200"
+          borderRadius="md"
+        >
+          <Flex justify="left" direction="row" p="5">
+            <svg
+              width="45"
+              height="45"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.5 3.7002C6.5 2.59563 7.39543 1.7002 8.5 1.7002C9.60457 1.7002 10.5 2.59563 10.5 3.7002V5.7002H15.5V10.7002H17.5C18.6046 10.7002 19.5 11.5956 19.5 12.7002C19.5 13.8048 18.6046 14.7002 17.5 14.7002H15.5V19.7002H10.5V17.7002C10.5 16.5956 9.60457 15.7002 8.5 15.7002C7.39543 15.7002 6.5 16.5956 6.5 17.7002V19.7002H1.5V14.7002H3.5C4.60457 14.7002 5.5 13.8048 5.5 12.7002C5.5 11.5956 4.60457 10.7002 3.5 10.7002H1.5V5.7002H6.5V3.7002Z"
+                stroke="#718096"
+                strokeWidth="2"
+              />{' '}
+            </svg>
+            <Text p="2"> </Text>
+            <Text
+              textAlign="left"
+              fontWeight="bold"
+              fontSize="md"
+              color="gray.700"
+            >
+              Projetos dos Pesquisadores
+            </Text>
+            {/*
+            <Input
+              name="titulo"
+              placeholder="🔎  Digite o título que deseja buscar..."
+              onChange={onChange}
             />
-          </Box>
-        </Flex>
-        <Flex justify="center">
-          <Button
-            colorScheme="teal"
-            w={{ base: '500', md: '' }}
-            onClick={navigateToLink}
-          >
-            Novo Projeto
-          </Button>
-        </Flex>
+            */}
+          </Flex>
+          <Divider />
+          <DataTable
+            // eslint-disable-next-line
+            // @ts-ignore
+            columns={columns}
+            data={projectsState}
+            noHeader
+            defaultSortField="id"
+            defaultSortAsc={false}
+            pagination
+            paginationComponentOptions={paginationComponentOptions}
+            highlightOnHover
+            button
+          />
+        </Box>
       </Flex>
-    </>
+      <Flex justify="center">
+        <Button
+          colorScheme="teal"
+          w={{ base: '500', md: '' }}
+          onClick={navigateToLink}
+        >
+          Novo Projeto
+        </Button>
+      </Flex>
+    </Flex>
   );
 }
 
