@@ -45,7 +45,7 @@ export default function EditaProjetos({
     titulo: projetos.titulo,
     descricao: projetos.descricao,
     tags: projetos.tags?.map((tag) => {
-      return ' ' + tag;
+      return ` ${tag}`;
     }),
     pesquisadores: projetos.pesquisadores
       ?.map((pesquisador) => {
@@ -81,135 +81,135 @@ export default function EditaProjetos({
   };
 
   return (
-    <>
-      <Flex justify="center" direction="column" p="5">
-        <Flex
-          justify="center"
-          direction="column"
-          maxW="1330px"
-          w="full"
-          margin="auto"
-          gap="3"
-        >
-          <Text textAlign="center" fontWeight="medium" fontSize="3xl">
-            Projeto dos Alunos
-          </Text>
-          <Flex justify="center" direction="row" gap="3">
-            <form onSubmit={handleSubmit}>
-              <Flex direction="column" p={4} gap="3">
-                <FormControl>
-                  <FormLabel>Título</FormLabel>
-                  <Input
-                    name="titulo"
-                    value={emptyData.titulo}
-                    placeholder="Ex: Relações Interpessoais"
-                    onChange={onChange}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Descrição</FormLabel>
-                  <Textarea
-                    name="descricao"
-                    value={emptyData.descricao}
-                    placeholder="Ex: Descrição do projeto"
-                    onChange={onChange}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Tags</FormLabel>
-                  <Input
-                    name="tags"
-                    value={emptyData.tags}
-                    placeholder="Ex: autocompaixão"
-                    onChange={onChangeTmp}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Pesquisadores</FormLabel>
-                  <Input
-                    name="pesquisadores"
-                    value={emptyData.pesquisadores}
-                    placeholder="Ex: John Doe"
-                    onChange={onChangeTmp}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Afiliações</FormLabel>
-                  <Input
-                    name="afiliacoes"
-                    value={emptyData.afiliacoes}
-                    placeholder="PUCRS"
-                    onChange={onChangeTmp}
-                  />
-                </FormControl>
-                <Flex
-                  direction={{ base: 'column', md: 'row' }}
-                  mt="14"
-                  gap={{ base: '2', md: '6' }}
-                  w={{ base: 'full', md: 'sm' }}
+    <Flex justify="center" direction="column" p="5">
+      <Flex
+        justify="center"
+        direction="column"
+        maxW="1330px"
+        w="full"
+        margin="auto"
+        gap="3"
+      >
+        <Text textAlign="center" fontWeight="medium" fontSize="3xl">
+          Projeto dos Alunos
+        </Text>
+        <Flex justify="center" direction="row" gap="3">
+          <form onSubmit={handleSubmit}>
+            <Flex direction="column" p={4} gap="3">
+              <FormControl>
+                <FormLabel>Título</FormLabel>
+                <Input
+                  name="titulo"
+                  value={emptyData.titulo}
+                  placeholder="Ex: Relações Interpessoais"
+                  onChange={onChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Descrição</FormLabel>
+                <Textarea
+                  name="descricao"
+                  value={emptyData.descricao}
+                  placeholder="Ex: Descrição do projeto"
+                  onChange={onChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Tags</FormLabel>
+                <Input
+                  name="tags"
+                  value={emptyData.tags}
+                  placeholder="Ex: autocompaixão"
+                  onChange={onChangeTmp}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Pesquisadores</FormLabel>
+                <Input
+                  name="pesquisadores"
+                  value={emptyData.pesquisadores}
+                  placeholder="Ex: John Doe"
+                  onChange={onChangeTmp}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Afiliações</FormLabel>
+                <Input
+                  name="afiliacoes"
+                  value={emptyData.afiliacoes}
+                  placeholder="PUCRS"
+                  onChange={onChangeTmp}
+                />
+              </FormControl>
+              <Flex
+                direction={{ base: 'column', md: 'row' }}
+                mt="14"
+                gap={{ base: '2', md: '6' }}
+                w={{ base: 'full', md: 'sm' }}
+              >
+                <Button
+                  colorScheme="teal"
+                  w={{ base: 'full', md: '' }}
+                  type="submit"
                 >
-                  <Button
-                    colorScheme="teal"
-                    w={{ base: 'full', md: '' }}
-                    type="submit"
-                  >
-                    Salvar
-                  </Button>
-                  <Button colorScheme="teal" w={{ base: 'full', md: '' }}>
-                    Cancelar
-                  </Button>
-                  <Button
-                    onClick={onOpen}
-                    colorScheme="teal"
-                    w={{ base: 'full', md: '' }}
-                    type="submit"
-                  >
-                    Excluir
-                  </Button>
-                  <AlertDialog
-                    isOpen={isOpen}
-                    leastDestructiveRef={cancelRef}
-                    onClose={onClose}
-                  >
-                    <AlertDialogOverlay>
-                      <AlertDialogContent>
-                        <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                          Delete Customer
-                        </AlertDialogHeader>
+                  Salvar
+                </Button>
+                <Button colorScheme="teal" w={{ base: 'full', md: '' }}>
+                  Cancelar
+                </Button>
+                <Button
+                  onClick={onOpen}
+                  colorScheme="teal"
+                  w={{ base: 'full', md: '' }}
+                  type="submit"
+                >
+                  Excluir
+                </Button>
+                <AlertDialog
+                  isOpen={isOpen}
+                  leastDestructiveRef={cancelRef}
+                  onClose={onClose}
+                >
+                  <AlertDialogOverlay>
+                    <AlertDialogContent>
+                      <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                        Delete Customer
+                      </AlertDialogHeader>
 
-                        <AlertDialogBody>
-                          Tem certeza que deseja excluir esse projeto? Você não
-                          pode desfazer essa ação depois.
-                        </AlertDialogBody>
+                      <AlertDialogBody>
+                        Tem certeza que deseja excluir esse projeto? Você não
+                        pode desfazer essa ação depois.
+                      </AlertDialogBody>
 
-                        <AlertDialogFooter>
-                          <Button ref={cancelRef} onClick={onClose}>
-                            Cancelar
-                          </Button>
-                          <Button colorScheme="red" onClick={onClose} ml={3}>
-                            Excluir
-                          </Button>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialogOverlay>
-                  </AlertDialog>
-                </Flex>
+                      <AlertDialogFooter>
+                        <Button ref={cancelRef} onClick={onClose}>
+                          Cancelar
+                        </Button>
+                        <Button colorScheme="red" onClick={onClose} ml={3}>
+                          Excluir
+                        </Button>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialogOverlay>
+                </AlertDialog>
               </Flex>
-            </form>
-            <ProjectItem project={emptyData} />
-          </Flex>
+            </Flex>
+          </form>
+          <ProjectItem project={emptyData} />
         </Flex>
       </Flex>
-    </>
+    </Flex>
   );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const projetos: Array<Projects> = await projetosApi.getAllProjects();
 
-  const paths = projetos.map((projeto) => ({
-    params: { id: projeto.id },
-  }));
+  const paths = projetos.map((projeto) => {
+    return {
+      params: { id: projeto.id },
+    };
+  });
 
   return { paths, fallback: false };
 };

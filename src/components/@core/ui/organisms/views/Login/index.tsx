@@ -10,7 +10,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Stack
+  Stack,
 } from '@chakra-ui/react';
 import { FaLock, FaUserAlt } from 'react-icons/fa';
 
@@ -19,15 +19,15 @@ const CFaLock = chakra(FaLock);
 
 interface LoginProps {
   showPassword: boolean;
-  handleShowClick() : any;
-  handleLoginClick() : any;
+  handleShowClick(): any;
+  handleLoginClick(): any;
 }
 
 export default function LoginView({
   showPassword,
   handleShowClick,
   handleLoginClick,
-} : LoginProps ) {
+}: LoginProps) {
   return (
     <Flex
       flexDirection="column"
