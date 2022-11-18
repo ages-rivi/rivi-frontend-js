@@ -16,9 +16,9 @@ interface Pesquisadores {
   afiliacao: string;
 }
 
-export default function Projetos({ projects }: { projects: Projects[] }) {
+export default function Projetos({ projects }: { projects: Projects[] }): JSX.Element {
   return (
-    <DashboardTemplate children={undefined}>
+    <DashboardTemplate>
       <Flex w="full">
         <ListaProjetos projects={projects} />
       </Flex>
