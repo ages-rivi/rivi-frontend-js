@@ -22,7 +22,7 @@ interface ProjetoProps {
 
 export default function Projetos({ projects }: ProjetoProps) {
   return (
-    <DashboardTemplate children={undefined}>
+    <DashboardTemplate>
       <Flex w="full">
         <ListaProjetos projects={projects} />
       </Flex>
