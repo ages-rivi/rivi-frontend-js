@@ -107,7 +107,7 @@ Para acontecer o deploy na url disponibilizada para o cliente, devemos fazer o s
 git remote add github https://github.com/ages-rivi/rivi-frontend-js.git
 ```
 
-- Enviar as mudanças para o repositório do github:
+- Enviar as mudanças para o repositório do github: 
 ```
 git push github
 ```
