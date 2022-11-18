@@ -59,6 +59,6 @@ export default function PesquisadorCardCarrossel({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projetos: Array<Pesquisador> = await projetosApi.getAllProjects();
+  const projetos = null
   return { props: { projects: projetos } };
 };
